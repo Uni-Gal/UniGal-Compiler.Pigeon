@@ -1,21 +1,25 @@
-# UniGal.Compilers
-��������������UniGal-Script�ı�����
+﻿# UniGal.Compilers
+如你所见，这是UniGal-Script的编译器
 
-## ����ṹ
-UniGal.Compiler.Backend����˵Ļ����ṹ  
-UniGal.Compiler.BKEBackend�����ú�ˣ�֮һ����  
-UniGal.Compiler.IR���м��ʾ��֧�ֱ������Ļ����ṹ  
-UniGal.Compiler.Frontend������ǰ�ˣ���Ȼ��Ҳ���Ե����ͳ�����  
-UniGal.Compiler.Driver��������֯����  
+## 代码结构
+UniGal.Compiler.Backend：后端的基础结构  
+UniGal.Compiler.BKEBackend：内置后端（之一？）  
+UniGal.Compiler.IR：中间表示，支持编译器的基础结构  
+UniGal.Compiler.Frontend：编译前端，当然，也可以单独掏出来用  
+UniGal.Compiler.Driver：编译组织程序  
 
-## Ϊʲô��Compilers
-����BKEBackend�Լ�дһ����ˣ�����֧���µ����棬�������ڹٷ�֧���б�  
-Ҳ����˵��������Ҳ�����Լ�֧��һ������
+## 为什么是Compilers
+照着BKEBackend自己写一个后端，就能支持新的引擎，并不限于官方支持列表  
+也就是说有能力你也可以自己支持一个引擎
 
-## ���Ϲ�����LGPL-2.1����ô����
-�������GPL���ǾͲ��ý綨ʲô�ǡ����ʹ�á�  
-��һ�µ�����Ҫ֧��Live2D������ĺ�˾�û������GPL  
-����LGPL��˵��ֻҪ���޸�UniGal.Compiler.Backend��UniGal.Compiler.IR���µĺ�˾�����㷢��
+## 不合惯例的LGPL-2.1是怎么回事
+真的用了GPL，那就不好界定什么是“组合使用”  
+万一新的引擎要支持Live2D，那你的后端就没法兼容GPL  
+但是LGPL好说，只要不修改UniGal.Compiler.Backend和UniGal.Compiler.IR，新的后端就能随便发布
 
-## ������������
-û�У���ΪFa��ָ�
+## 那你做完了吗
+没有，因为Fa鸽≈鸽
+
+## 那UniGal-Compiler又是怎么回事
+那个是早先做出来，能用  
+我这还没做完呢
