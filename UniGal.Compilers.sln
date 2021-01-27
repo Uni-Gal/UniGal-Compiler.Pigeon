@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniGal.Compiler.Driver", "Driver\UniGal.Compiler.Driver.csproj", "{F1FBF746-4F05-4C8F-997C-F5C6CCA01A5D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniGal.Compiler.BKEBackend", "Unigal.Compiler.BKEBackend\UniGal.Compiler.BKEBackend.csproj", "{943BF0F2-CCFE-48CC-9471-48FEEC8A6D9B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniGal.Compiler.Frontend", "UniGal.Compiler.Frontend\UniGal.Compiler.Frontend.csproj", "{15E494E2-1DC7-49D8-BFAA-F3C20BDFF262}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniGal.Compiler.Backend", "UniGal.Compiler.Backend\UniGal.Compiler.Backend.csproj", "{5BC270F2-E309-4179-BD93-C0FE0E04F760}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniGal.Compiler.IR", "UniGal.Compiler.IR\UniGal.Compiler.IR.csproj", "{539AC898-8145-4BAF-8F95-9E12BE58A649}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Github", "Github", "{8BCFA522-A7BF-4F44-A7A1-746C5F3C813D}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		LICENSE.txt = LICENSE.txt
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F1FBF746-4F05-4C8F-997C-F5C6CCA01A5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1FBF746-4F05-4C8F-997C-F5C6CCA01A5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1FBF746-4F05-4C8F-997C-F5C6CCA01A5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1FBF746-4F05-4C8F-997C-F5C6CCA01A5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{943BF0F2-CCFE-48CC-9471-48FEEC8A6D9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{943BF0F2-CCFE-48CC-9471-48FEEC8A6D9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{943BF0F2-CCFE-48CC-9471-48FEEC8A6D9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{943BF0F2-CCFE-48CC-9471-48FEEC8A6D9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15E494E2-1DC7-49D8-BFAA-F3C20BDFF262}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15E494E2-1DC7-49D8-BFAA-F3C20BDFF262}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15E494E2-1DC7-49D8-BFAA-F3C20BDFF262}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15E494E2-1DC7-49D8-BFAA-F3C20BDFF262}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BC270F2-E309-4179-BD93-C0FE0E04F760}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BC270F2-E309-4179-BD93-C0FE0E04F760}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BC270F2-E309-4179-BD93-C0FE0E04F760}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BC270F2-E309-4179-BD93-C0FE0E04F760}.Release|Any CPU.Build.0 = Release|Any CPU
+		{539AC898-8145-4BAF-8F95-9E12BE58A649}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{539AC898-8145-4BAF-8F95-9E12BE58A649}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{539AC898-8145-4BAF-8F95-9E12BE58A649}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{539AC898-8145-4BAF-8F95-9E12BE58A649}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A868FDEA-5745-4835-849A-A4646CC8243A}
+	EndGlobalSection
+EndGlobal

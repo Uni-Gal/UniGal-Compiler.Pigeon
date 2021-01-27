@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net5.0</TargetFramework>
+		<AssemblyName>UniGal.Compiler.Driver</AssemblyName>
+		<StartupObject>UniGal.Compiler.Driver.Entry</StartupObject>
+		<Authors>Fa鸽</Authors>
+		<Company>UniGal Team</Company>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="CommandLineParser" Version="2.8.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\UniGal.Compiler.Backend\UniGal.Compiler.Backend.csproj" />
+		<ProjectReference Include="..\Unigal.Compiler.BKEBackend\UniGal.Compiler.BKEBackend.csproj" />
+		<ProjectReference Include="..\UniGal.Compiler.Frontend\UniGal.Compiler.Frontend.csproj" />
+	</ItemGroup>
+
+</Project>
