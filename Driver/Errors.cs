@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,7 +16,7 @@ namespace UniGal.Compiler.Driver
 			Explanation = explain;
 		}
 		protected CompilerDriverError(ErrorCode errc, IEnumerable<string> msgs):
-			base(new(9001, ErrorServiety.CritialError), msgs)
+			base(errc, msgs)
 		{
 			
 		}
@@ -27,12 +27,12 @@ namespace UniGal.Compiler.Driver
 		}
 	}
 
-	public class CannotLoadBackend : CompilerDriverError
+	public class CannotLoadFactory : CompilerDriverError
 	{
-		public CannotLoadBackend(string backendName, string engine,IEnumerable<string> msgs):
+		public CannotLoadFactory(string backendName, string engine,IEnumerable<string> msgs):
 			base(new ErrorCode(9011, ErrorServiety.Warning), msgs)
 		{
-			Explanation = $"无法加载后端：后端名称：{backendName}，面向引擎：{engine}。";
+			Explanation = $"无法加载后端工厂：后端名称：{backendName}，面向引擎：{engine}。";
 		}
 	}
 }
