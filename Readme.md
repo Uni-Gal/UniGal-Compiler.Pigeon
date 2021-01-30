@@ -22,4 +22,5 @@ UniGal.Compiler.Driver：编译组织程序
 
 ## 那UniGal-Compiler又是怎么回事
 那个是早先做出来，能用  
+(能用，但不建议用，因为那个只支持纯文本```<text></text>```，并且支持到UniGal-Script V0.0.2（现在已经是V0.1.0了）)
 我这还没做完呢
