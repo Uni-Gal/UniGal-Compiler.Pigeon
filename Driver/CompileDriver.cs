@@ -6,6 +6,7 @@ using System.Reflection;
 using UniGal.Compiler.IR;
 using UniGal.Compiler.Backend;
 using UniGal.Compiler.Frontend;
+using System.Security;
 
 namespace UniGal.Compiler.Driver
 {
@@ -14,6 +15,8 @@ namespace UniGal.Compiler.Driver
 		private readonly CompileOptions opt;
 		private readonly List<CompilerError> errors;
 		private readonly List<BackendRecord> backends;
+
+		
 		public DirectoryInfo OutputDirectory => opt.OutDir;
 		public IEnumerable<FileInfo> SourceFiles => opt.Sources;
 		public IEnumerable<CompilerError> Errors => errors;
@@ -32,48 +35,85 @@ namespace UniGal.Compiler.Driver
 				if (file.Extension != ".dll")
 					continue;
 
-				Assembly asm = Assembly.LoadFile(file.FullName);
-
-				UniGalBackendAssemblyAttribute? attrasm = asm.GetCustomAttribute<UniGalBackendAssemblyAttribute>();
-				if (attrasm == null) continue;
-
-				foreach (Type t in asm.GetTypes())
+				try
 				{
-					try
-					{
-						// ctor = Constructor
-						const BindingFlags ctorflags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.CreateInstance;
+					Assembly asm = Assembly.LoadFrom(file.FullName);
+					
 
-						var attrfactory = t.GetCustomAttribute<UniGalBackendFactoryAttribute>(false);
-						if (attrfactory == null) continue;
+					UniGalBackendAssemblyAttribute? attrasm = asm.GetCustomAttribute<UniGalBackendAssemblyAttribute>();
+					if (attrasm == null) continue;
 
-						object? obj = t.InvokeMember("", ctorflags, null, null, null);
-						if (obj is BackendFactory f)
-							backends.Add(new(f, attrasm.BackendName, attrasm.TargetEngine, attrfactory.Version));
-						else continue;
-					}		
-					catch(MissingMethodException e)
+					foreach (Type t in asm.GetTypes())
 					{
-						var msg = new string[] { "该工厂缺少无参构造函数", e.ToString() };
-						errors.Add(new CannotLoadFactory(attrasm.BackendName, attrasm.TargetEngine, msg));
-						continue;
+						try
+						{
+							// ctor = Constructor
+							const BindingFlags ctorflags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.CreateInstance;
+
+							if (t.ContainsGenericParameters)
+							{
+								// TODO: 这里该报个什么错
+								// 弄个泛型类怎么整？
+								// 虚空创建¿
+								continue;
+							}
+
+							var attrfactory = t.GetCustomAttribute<UniGalBackendFactoryAttribute>(false);
+							if (attrfactory == null) continue;
+
+							object? obj = t.InvokeMember("", ctorflags, null, null, null);
+							if (obj is BackendFactory f)
+								backends.Add(new(f, attrasm.BackendName, attrasm.TargetEngine, attrfactory.Version));
+							else continue;
+						}
+						catch (MissingMethodException e)
+						{
+							var msg = new string[] { "该工厂缺少无参构造函数", e.ToString() };
+							errors.Add(new CannotLoadFactory(attrasm.BackendName, attrasm.TargetEngine, msg));
+							continue;
+						}
+						catch (MemberAccessException e)
+						{
+							var msg = new string[] { "无法访问后端工厂的构造器，这通常意味着后端工厂有问题", e.ToString() };
+							errors.Add(new CannotLoadFactory(attrasm.BackendName, attrasm.TargetEngine, msg));
+							continue;
+						}
+						catch (NotSupportedException e)
+						{
+							var msg = new string[] { e.ToString(), "说吧，你在整什么活" };
+							errors.Add(new CannotLoadFactory(attrasm.BackendName, attrasm.TargetEngine, msg));
+							continue;
+						}
+						catch (Exception e)
+						{
+							var msg = new string[]
+							{
+							"创建工厂时出现了异常",
+							e.ToString()
+							};
+							errors.Add(new CannotLoadFactory(attrasm.BackendName, attrasm.TargetEngine, msg));
+							continue;
+						}
 					}
-					catch (MemberAccessException e)
+				}
+				catch (FileLoadException e)
+				{
+					errors.Add(new CannotLoadBackend(file.FullName, new string[]
 					{
-						var msg = new string[] { "无法访问后端工厂的构造器，这通常意味着后端工厂有问题", e.ToString() };
-						errors.Add(new CannotLoadFactory(attrasm.BackendName, attrasm.TargetEngine, msg));
-						continue;
-					}
-					catch (NotSupportedException e)
+						"无法加载后端程序集" + e.FileName!,
+						e.Message
+					}));
+					continue;
+
+				}
+				catch (BadImageFormatException e)
+				{
+					errors.Add(new CannotLoadBackend(file.FullName, new string[]
 					{
-						var msg = new string[] {
-							"Creation of System.TypedReference, System.ArgIterator, and System.RuntimeArgumentHandle",
-							"types is not supported.",
-							e.ToString(),
-							"说吧，你在整什么活"};
-						errors.Add(new CannotLoadFactory(attrasm.BackendName, attrasm.TargetEngine, msg));
-						continue;
-					}
+						"无法加载后端程序集" + e.FileName,
+						e.Message
+					}));
+					continue;
 				}
 
 			}

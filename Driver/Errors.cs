@@ -21,7 +21,7 @@ namespace UniGal.Compiler.Driver
 			
 		}
 
-		public CompilerDriverError(IEnumerable<string> msgs):base(ice_basic_errc, msgs)
+		internal CompilerDriverError(IEnumerable<string> msgs):base(ice_basic_errc, msgs)
 		{
 			Explanation = "发生了严重的内部编译器错误";
 		}
@@ -30,9 +30,18 @@ namespace UniGal.Compiler.Driver
 	public class CannotLoadFactory : CompilerDriverError
 	{
 		public CannotLoadFactory(string backendName, string engine,IEnumerable<string> msgs):
-			base(new ErrorCode(9011, ErrorServiety.Warning), msgs)
+			base(new ErrorCode(9012, ErrorServiety.Warning), msgs)
 		{
 			Explanation = $"无法加载后端工厂：后端名称：{backendName}，面向引擎：{engine}。";
+		}
+	}
+
+	public class CannotLoadBackend : CompilerDriverError
+	{
+		public CannotLoadBackend(string filename, IEnumerable<string> msgs)
+			:base(new(9011 ,ErrorServiety.Warning), msgs)
+		{
+			Explanation = $"无法加载后端程序集{filename}";
 		}
 	}
 }
