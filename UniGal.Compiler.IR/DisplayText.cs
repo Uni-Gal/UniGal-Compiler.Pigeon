@@ -1,4 +1,4 @@
-﻿#pragma warning disable CS1591 // 缺少对公共可见类型或成员的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员的 XML 注释
 
 using System.Collections.Generic;
 
@@ -24,16 +24,15 @@ namespace UniGal.Compiler.IR
 				NameColor = nameColor;
 			}
 		}
-
 		/// <summary>
 		/// 实际文字
 		/// </summary>
 		public class TextContent : BasicElement
 		{
 			public TextStyle Style;
-			public readonly IEnumerable<string> Paragraphes;
+			public readonly IEnumerable<StringView> Paragraphes;
 
-			public TextContent(IEnumerable<string> paras)
+			public TextContent(IEnumerable<StringView> paras)
 			{
 				Paragraphes = paras;
 			}

@@ -1,4 +1,4 @@
-﻿using System.Runtime.InteropServices;
+using System.Runtime.InteropServices;
 
 namespace UniGal.Compiler.IR
 {
@@ -29,5 +29,12 @@ namespace UniGal.Compiler.IR
 		/// <summary>透明分量</summary>
 		[FieldOffset(3)]
 		public byte A;
+		
+		/// <summary>
+		/// <para>打包的颜色值</para>
+		/// <para>建议判断一下当前平台的字节序</para>
+		/// </summary>
+		[FieldOffset(0)]
+		public uint Packed;
 	}
 }
