@@ -1,4 +1,4 @@
-﻿using System.IO;
+using System.IO;
 using System.Xml;
 
 namespace UniGal.Compiler.IR
@@ -11,11 +11,11 @@ namespace UniGal.Compiler.IR
 		/// <summary>
 		/// 元数据
 		/// </summary>
-		public Metadata? Metadata { get; private set; }
+		public Metadata Metadata { get; init; }
 
-		public ScriptSyntaxTree(Metadata file)
+		public ScriptSyntaxTree(Metadata md)
 		{
-			
+			Metadata = md;
 		}
 	}
 }

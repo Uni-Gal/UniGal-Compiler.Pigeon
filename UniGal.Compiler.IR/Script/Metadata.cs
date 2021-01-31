@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+using System.Globalization;
 using System.Text;
 
 namespace UniGal.Compiler.IR
@@ -20,7 +20,7 @@ namespace UniGal.Compiler.IR
 
 		/// <summary>源编码</summary>
 		public Encoding SourceEncoding = Encoding.UTF8;
-		/// <summary>目标编码</summary>
+		/// <summary>目标编码，后端可以灵活处理</summary>
 		public Encoding TargetEncoding = Encoding.UTF8;
 
 		/// <summary>源文化信息，可选</summary>
