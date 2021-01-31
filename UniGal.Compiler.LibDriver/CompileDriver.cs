@@ -8,7 +8,7 @@ using UniGal.Compiler.Backend;
 using UniGal.Compiler.Frontend;
 using System.Security;
 
-namespace UniGal.Compiler.Driver
+namespace UniGal.Compiler.LibDriver
 {
 	public class CompileDriver
 	{

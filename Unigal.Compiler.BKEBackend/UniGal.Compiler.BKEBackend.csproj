@@ -1,11 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<Nullable>enable</Nullable>
 		<TargetFramework>net5.0</TargetFramework>
 		<Authors>Fa鸽</Authors>
 		<Company>UniGal Team</Company>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageLicenseExpression>LGPL-2.1-only</PackageLicenseExpression>
+		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+		<Nullable>enable</Nullable>
 	</PropertyGroup>
 
 	<ItemGroup>

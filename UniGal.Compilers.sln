@@ -22,6 +22,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Github", "Github", "{8BCFA5
 		Readme.md = Readme.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniGal.Compiler.LibDriver", "UniGal.Compiler.LibDriver\UniGal.Compiler.LibDriver.csproj", "{3ACEB10A-A9AE-4FBB-80DE-37C428715CB1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +50,10 @@ Global
 		{539AC898-8145-4BAF-8F95-9E12BE58A649}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{539AC898-8145-4BAF-8F95-9E12BE58A649}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{539AC898-8145-4BAF-8F95-9E12BE58A649}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3ACEB10A-A9AE-4FBB-80DE-37C428715CB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3ACEB10A-A9AE-4FBB-80DE-37C428715CB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3ACEB10A-A9AE-4FBB-80DE-37C428715CB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3ACEB10A-A9AE-4FBB-80DE-37C428715CB1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

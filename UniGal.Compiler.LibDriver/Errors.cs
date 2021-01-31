@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UniGal.Compiler.IR;
 
-namespace UniGal.Compiler.Driver
+namespace UniGal.Compiler.LibDriver
 {
 	public class CompilerDriverError : CompilerError
 	{

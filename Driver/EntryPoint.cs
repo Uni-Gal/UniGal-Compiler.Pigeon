@@ -1,23 +1,12 @@
-﻿using CommandLine;
 using System;
 using System.Collections.Generic;
 using System.IO;
 
+using CommandLine;
+using UniGal.Compiler.LibDriver;
+
 namespace UniGal.Compiler.Driver
 {
-	public class CompileOptions
-	{
-		[Option('s')]
-		public IEnumerable<FileInfo> Sources { get; set; } = Array.Empty<FileInfo>();
-
-		[Option('o')]
-		public DirectoryInfo OutDir { get; set; } = new(".\\Compiled\\");
-
-		public string BackendName { get; set; } = "";
-		public string TargetLanguage { get; set; } = "";
-		public string TargetEngine { get; set; } = "";
-	}
-
 	class EntryPoint
 	{
 		static void Main(string[] args)

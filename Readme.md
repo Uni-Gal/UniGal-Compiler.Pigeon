@@ -7,6 +7,7 @@ UniGal.Compiler.BKEBackend：内置后端（之一？）
 UniGal.Compiler.IR：中间表示，支持编译器的基础结构  
 UniGal.Compiler.Frontend：编译前端，当然，也可以单独掏出来用  
 UniGal.Compiler.Driver：编译组织程序  
+UniGal.Compiler.LibDriver：编译组织库
 
 ## 为什么是Compilers
 照着BKEBackend自己写一个后端，就能支持新的引擎，并不限于官方支持列表  
