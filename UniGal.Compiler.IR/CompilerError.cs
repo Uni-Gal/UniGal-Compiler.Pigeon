@@ -76,7 +76,7 @@ namespace UniGal.Compiler.IR
 		/// <summary>
 		/// 解释信息
 		/// </summary>
-		public string Explanation { get; protected set; } = "";
+		public string Explaination { get; protected set; } = "";
 
 		protected CompilerError(ErrorCode errc, IEnumerable<string> messages)
 		{
@@ -91,7 +91,7 @@ namespace UniGal.Compiler.IR
 		{
 			StringBuilder outstr = new(128);
 			string errc = Code.ToString();
-			outstr.AppendFormat("{0}：{1}", errc, Explanation).AppendLine();
+			outstr.AppendFormat("{0}：{1}", errc, Explaination).AppendLine();
 
 			if (Messages.IsNotEmpty())
 			{
