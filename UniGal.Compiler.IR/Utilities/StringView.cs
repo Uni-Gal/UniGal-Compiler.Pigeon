@@ -120,7 +120,7 @@ namespace UniGal.Compiler.IR
 		/// </summary>
 		public ReadOnlyMemory<char> AsMemory()
 		{
-			return sr.AsMemory();
+			return sr.AsMemory(Begin, Size);
 		} 
 		#endregion
 

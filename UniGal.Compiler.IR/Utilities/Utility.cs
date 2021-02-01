@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +15,7 @@ namespace UniGal.Compiler.IR
 			return collection.GetEnumerator().MoveNext();
 		}
 
-		public static	bool IsNotEmpty<T>(this IEnumerable<T>? collection)
+		public static bool IsNotEmpty<T>(this IEnumerable<T>? collection)
 		{
 			if (collection == null) return false;
 			using var iterator = collection.GetEnumerator();
