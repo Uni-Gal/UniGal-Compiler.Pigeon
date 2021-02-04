@@ -3,7 +3,7 @@ using System.Reflection;
 using System;
 
 using UniGal.Compiler.Backend;
-
+#pragma warning disable CS1591
 namespace UniGal.Compiler.LibDriver
 {
 	sealed partial class CompileDriver
@@ -33,9 +33,7 @@ namespace UniGal.Compiler.LibDriver
 
 							if (t.ContainsGenericParameters)
 							{
-								// TODO: 这里该报个什么错
-								// 弄个泛型类怎么整？
-								// 虚空创建¿
+								errors.Add(new CannotLoadFactory(attrasm.BackendName, attrasm.TargetEngine, new[] { "¿你整个泛型类当工厂，我怎么创建？" }));
 								continue;
 							}
 
@@ -43,7 +41,7 @@ namespace UniGal.Compiler.LibDriver
 							if (attrfactory == null) continue;
 
 							object? obj = t.InvokeMember("", ctorflags, null, null, null);
-							if (obj is BackendFactory f)
+							if (obj is IBackendFactory f)
 								backends.Add(new(f, attrasm.BackendName, attrasm.TargetEngine, attrfactory.Version));
 							else continue;
 						}
@@ -81,7 +79,7 @@ namespace UniGal.Compiler.LibDriver
 				{
 					errors.Add(new CannotLoadBackend(file.FullName, new string[]
 					{
-						"无法加载后端程序集" + e.FileName!,
+						"无法加载后端程序集" + e.FileName,
 						e.Message
 					}));
 					continue;

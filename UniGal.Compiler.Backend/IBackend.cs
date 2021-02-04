@@ -31,9 +31,10 @@ namespace UniGal.Compiler.Backend
 		/// </summary>
 		public IEnumerable<CompilerError> Errors { get; }
 		/// <summary>
-		/// 该事件在错误列表中添加了错误时触发
+		/// 运行时的一些属性
 		/// </summary>
-		public event ErrorsAddedEventHandler OnErrorsAdded;
+		/// <remarks>值为null时，忽略</remarks>
+		public RuntimeEnvironment? RuntimeProperties { get; set; }
 
 		/// <summary>
 		/// 编译

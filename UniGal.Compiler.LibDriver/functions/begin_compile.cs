@@ -4,7 +4,7 @@ using System;
 
 using UniGal.Compiler.Frontend;
 using UniGal.Compiler.IR;
-
+#pragma warning disable CS1591
 namespace UniGal.Compiler.LibDriver
 {
 	sealed partial class CompileDriver
