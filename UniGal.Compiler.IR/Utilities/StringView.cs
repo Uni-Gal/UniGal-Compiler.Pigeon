@@ -121,7 +121,7 @@ namespace UniGal.Compiler.IR
 		public ReadOnlyMemory<char> AsMemory()
 		{
 			return sr.AsMemory(Begin, Size);
-		} 
+		}
 		#endregion
 
 		/// <summary>
@@ -130,6 +130,20 @@ namespace UniGal.Compiler.IR
 		public override string ToString()
 		{
 			return sr.Substring(Begin, Size);
+		}
+	}
+	internal static class sv_extfnuncs
+	{
+		/// <summary>
+		/// 将字符串切成<see cref="StringView"/>
+		/// </summary>
+		/// <param name="str">Autogen</param>
+		/// <param name="begin"></param>
+		/// <param name="end"></param>
+		/// <returns></returns>
+		internal static StringView as_sv(this string str, int begin, int end)
+		{
+			return new StringView(str, begin, end);
 		}
 	}
 }
