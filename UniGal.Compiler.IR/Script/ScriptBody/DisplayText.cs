@@ -1,8 +1,9 @@
 #pragma warning disable CS1591 // 缺少对公共可见类型或成员的 XML 注释
 
 using System.Collections.Generic;
+using UniGal.Compiler.IR.Utilities;
 
-namespace UniGal.Compiler.IR
+namespace UniGal.Compiler.IR.Script.ScriptBody
 {
 	/// <summary>
 	/// 一段显示在屏幕上的话
@@ -16,7 +17,7 @@ namespace UniGal.Compiler.IR
 		{
 			public readonly string Name;
 			public readonly Color NameColor;
-			public string Ruby = "";
+			public StringView Ruby = StringView.Empty;
 			public TextStyle Style;
 			public CharacterInfo(string name, Color nameColor)
 			{

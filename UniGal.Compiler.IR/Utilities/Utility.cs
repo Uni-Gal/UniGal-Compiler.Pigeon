@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UniGal.Compiler.IR
+namespace UniGal.Compiler.IR.Utilities
 {
 	internal static class Utility
 	{

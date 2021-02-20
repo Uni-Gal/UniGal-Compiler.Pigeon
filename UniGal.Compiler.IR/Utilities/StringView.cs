@@ -1,6 +1,6 @@
 using System;
 
-namespace UniGal.Compiler.IR
+namespace UniGal.Compiler.IR.Utilities
 {
 	/// <summary>
 	/// 黑科技
@@ -84,6 +84,11 @@ namespace UniGal.Compiler.IR
 		{
 			return l.AsSpan() != r.AsSpan();
 		}
+
+		/// <summary>
+		/// 空的
+		/// </summary>
+		public static readonly StringView Empty = new(string.Empty, 0, 0);
 
 		#endregion
 

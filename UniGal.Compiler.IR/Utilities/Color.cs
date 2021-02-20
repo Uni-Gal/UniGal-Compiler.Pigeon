@@ -1,6 +1,6 @@
-﻿using System.Runtime.InteropServices;
+using System.Runtime.InteropServices;
 
-namespace UniGal.Compiler.IR
+namespace UniGal.Compiler.IR.Utilities
 {
 	/// <summary>
 	/// DXGI R8G8B8A8 颜色

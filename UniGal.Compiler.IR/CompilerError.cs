@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -78,6 +78,9 @@ namespace UniGal.Compiler.IR
 		/// </summary>
 		public string Explaination { get; protected set; } = "";
 
+		/// <summary>
+		/// 唯一指定
+		/// </summary>
 		protected CompilerError(ErrorCode errc, IEnumerable<string> messages)
 		{
 			Code = errc;

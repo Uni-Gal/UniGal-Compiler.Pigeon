@@ -1,7 +1,7 @@
 #pragma warning disable CS1591
 using System;
 
-namespace UniGal.Compiler.IR
+namespace UniGal.Compiler.IR.Script.ScriptBody
 {
 	[Flags]
 	public enum TextStyle : uint

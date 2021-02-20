@@ -4,8 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UniGal.Compiler.IR
+namespace UniGal.Compiler.IR.Script
 {
+	/// <summary>
+	/// 运行环境的一些属性
+	/// </summary>
 	public class RuntimeEnvironment : BasicElement
 	{
 		/// <summary>
@@ -27,7 +30,6 @@ namespace UniGal.Compiler.IR
 				FullScreen = fullscreen;
 			}
 		}
-
 		/// <summary>需要安装的再分发包</summary>
 		public record RedistPackage
 		{
@@ -47,17 +49,28 @@ namespace UniGal.Compiler.IR
 		}
 
 		/// <summary>
+		/// 默认值
+		/// </summary>
+		public static readonly RuntimeEnvironment Default = new(1920, 1080, true, Array.Empty<RedistPackage>());
+
+		/// <summary>
 		/// 显示设定
 		/// </summary>
 		public readonly Display DisplaySettings;
 		/// <summary>需要安装的再分发包</summary>
 		public IEnumerable<RedistPackage> Redists { get; init; }
 
-		public RuntimeEnvironment(Display displaySettings, IEnumerable<RedistPackage> redists)
+		/// <summary>
+		/// ctor(DisplayProp, Redists)
+		/// </summary>
+		public RuntimeEnvironment(Display displayProps, IEnumerable<RedistPackage> redists)
 		{
-			DisplaySettings = displaySettings;
+			DisplaySettings = displayProps;
 			Redists = redists;
 		}
+		/// <summary>
+		/// ctor(Width, Height, IsFullscreen, Redists)
+		/// </summary>
 		public RuntimeEnvironment(uint w, uint h, bool fullscreen, IEnumerable<RedistPackage> redists) : this(new(w,h,fullscreen),redists)
 		{
 

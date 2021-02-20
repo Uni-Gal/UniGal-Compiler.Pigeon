@@ -1,7 +1,7 @@
 using System.Globalization;
 using System.Text;
 
-namespace UniGal.Compiler.IR
+namespace UniGal.Compiler.IR.Script
 {
 	/// <summary>
 	/// 元数据信息
