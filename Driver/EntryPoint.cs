@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 
 using UniGal.Compiler.LibDriver;
-
+#pragma warning disable CS1591
 namespace UniGal.Compiler.Driver
 {
 	public class EntryPoint

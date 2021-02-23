@@ -5,16 +5,11 @@ using UniGal.Compiler.IR.Script;
 
 namespace UniGal.Compiler.Backend
 {
-	public delegate void ErrorsAddedEventHandler(IBackend sender, IEnumerable<CompilerError> addedErrors);
-
+	/// <summary>
+	/// 后端接口，建议使用
+	/// </summary>
 	public interface IBackend
 	{
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="sender">发送者</param>
-		/// <param name="addedErrors">被添加的错误</param>
-
 		/// <summary>
 		/// 是否将警告视为错误
 		/// </summary>
