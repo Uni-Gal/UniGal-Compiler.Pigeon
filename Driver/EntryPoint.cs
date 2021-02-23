@@ -2,29 +2,30 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-using CommandLine;
 using UniGal.Compiler.LibDriver;
 
 namespace UniGal.Compiler.Driver
 {
-	class EntryPoint
+	public class EntryPoint
 	{
-		static void Main(string[] args)
+		/// <summary>
+		/// 入口方法
+		/// </summary>
+		/// <param name="srcs">源文件</param>
+		/// <param name="outDir">输出目录</param>
+		/// <param name="backendName">指定的后端名称，可选</param>
+		/// <param name="targetLanguage">目标语言，可选</param>
+		/// <param name="targetEngine">目标引擎，可选</param>
+		public static void Main(IEnumerable<FileInfo> srcs, DirectoryInfo outDir, string backendName = "", string targetLanguage = "", string targetEngine = "")
 		{
-			Parser parser = new(with =>
+			CompileOptions options = new()
 			{
-				with.AutoHelp = true;
-				with.IgnoreUnknownArguments = true;
-				with.CaseSensitive = false;
-			});
-			CompileOptions options = new();
-			var result = parser.ParseArguments<CompileOptions>(args).WithParsed((opt) =>
-			{
-				options = opt;
-			}).WithNotParsed((errs) =>
-			{
-				Environment.Exit(1);
-			});
+				BackendName = backendName,
+				Sources = srcs,
+				OutDir = outDir,
+				TargetEngine = targetEngine,
+				TargetLanguage = targetLanguage
+			};
 
 			CompileDriver driver = new(options);
 

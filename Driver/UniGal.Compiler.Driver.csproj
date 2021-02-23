@@ -4,7 +4,7 @@
 		<OutputType>Exe</OutputType>
 		<TargetFramework>net5.0</TargetFramework>
 		<AssemblyName>UniGal.Compiler.Driver</AssemblyName>
-		<StartupObject>UniGal.Compiler.Driver.EntryPoint</StartupObject>
+		<StartupObject></StartupObject>
 		<Authors>Fa鸽</Authors>
 		<Company>UniGal Team</Company>
 		<PackageLicenseExpression>LGPL-2.1-only</PackageLicenseExpression>
@@ -13,7 +13,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="CommandLineParser" Version="2.8.0" />
+	  <PackageReference Include="System.CommandLine" Version="2.0.0-beta1.20574.7" />
+	  <PackageReference Include="System.CommandLine.DragonFruit" Version="0.3.0-alpha.20574.7" />
+	  <PackageReference Include="System.CommandLine.Rendering" Version="0.3.0-alpha.20574.7" />
 	</ItemGroup>
 
 	<ItemGroup>
