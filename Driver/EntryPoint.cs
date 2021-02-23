@@ -16,7 +16,7 @@ namespace UniGal.Compiler.Driver
 		/// <param name="backendName">指定的后端名称，可选</param>
 		/// <param name="targetLanguage">目标语言，可选</param>
 		/// <param name="targetEngine">目标引擎，可选</param>
-		public static void RealMain(IEnumerable<FileInfo> srcs, DirectoryInfo outDir, string backendName = "", string targetLanguage = "", string targetEngine = "")
+		public static void Main(IEnumerable<FileInfo> srcs, DirectoryInfo outDir, string backendName = "", string targetLanguage = "", string targetEngine = "")
 		{
 			CompileOptions options = new()
 			{
