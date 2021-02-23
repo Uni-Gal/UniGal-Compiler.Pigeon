@@ -9,14 +9,14 @@ namespace UniGal.Compiler.Driver
 	public class EntryPoint
 	{
 		/// <summary>
-		/// 入口方法
+		/// Uni-Gal编译器命令行入口
 		/// </summary>
-		/// <param name="srcs">源文件</param>
+		/// <param name="srcs">源文件列表，用空格分隔每个文件</param>
 		/// <param name="outDir">输出目录</param>
 		/// <param name="backendName">指定的后端名称，可选</param>
 		/// <param name="targetLanguage">目标语言，可选</param>
 		/// <param name="targetEngine">目标引擎，可选</param>
-		public static void Main(IEnumerable<FileInfo> srcs, DirectoryInfo outDir, string backendName = "", string targetLanguage = "", string targetEngine = "")
+		public static void RealMain(IEnumerable<FileInfo> srcs, DirectoryInfo outDir, string backendName = "", string targetLanguage = "", string targetEngine = "")
 		{
 			CompileOptions options = new()
 			{
@@ -32,5 +32,6 @@ namespace UniGal.Compiler.Driver
 			driver.BeginCompile();
 
 		}
+
 	}
 }
