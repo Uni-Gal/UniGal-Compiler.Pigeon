@@ -35,7 +35,7 @@ namespace UniGal.Compiler.Backend
 		/// 运行时的一些属性
 		/// </summary>
 		/// <remarks>值为null时，忽略</remarks>
-		public EnvironmentInfo? RuntimeProperties { get; set; }
+		public EnvironmentInfo? EnvironmentProps { get; set; }
 
 		/// <summary>
 		/// 编译
