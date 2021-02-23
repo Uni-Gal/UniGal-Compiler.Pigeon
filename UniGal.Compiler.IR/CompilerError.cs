@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using UniGal.Compiler.IR.Utilities;
 
 namespace UniGal.Compiler.IR
 {

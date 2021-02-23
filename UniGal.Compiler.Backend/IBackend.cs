@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UniGal.Compiler.IR;
+using UniGal.Compiler.IR.Script;
 
 namespace UniGal.Compiler.Backend
 {
@@ -34,7 +35,7 @@ namespace UniGal.Compiler.Backend
 		/// 运行时的一些属性
 		/// </summary>
 		/// <remarks>值为null时，忽略</remarks>
-		public RuntimeEnvironment? RuntimeProperties { get; set; }
+		public EnvironmentInfo? RuntimeProperties { get; set; }
 
 		/// <summary>
 		/// 编译

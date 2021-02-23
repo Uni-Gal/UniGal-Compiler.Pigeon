@@ -17,12 +17,12 @@ namespace UniGal.Compiler.IR
 		/// <summary>
 		/// 运行环境属性
 		/// </summary>
-		public RuntimeEnvironment? Environment { get; init; }
+		public EnvironmentInfo? Environment { get; init; }
 
 		/// <summary>
 		/// ctor
 		/// </summary>
-		public ScriptSyntaxTree(Metadata md, RuntimeEnvironment env)
+		public ScriptSyntaxTree(Metadata md, EnvironmentInfo env)
 		{
 			Metadata = md;
 			Environment = env;
