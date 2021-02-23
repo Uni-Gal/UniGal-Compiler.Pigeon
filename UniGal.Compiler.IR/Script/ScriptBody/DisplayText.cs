@@ -11,26 +11,10 @@ namespace UniGal.Compiler.IR.Script.ScriptBody
 	public class DisplayText : BasicElement
 	{
 		/// <summary>
-		/// 说话的角色
-		/// </summary>
-		public class CharacterInfo : BasicElement
-		{
-			public readonly string Name;
-			public readonly Color NameColor;
-			public StringView Ruby = StringView.Empty;
-			public TextStyle Style;
-			public CharacterInfo(string name, Color nameColor)
-			{
-				Name = name;
-				NameColor = nameColor;
-			}
-		}
-		/// <summary>
 		/// 实际文字
 		/// </summary>
 		public class TextContent : BasicElement
 		{
-			public TextStyle Style;
 			public readonly IEnumerable<StringView> Paragraphes;
 
 			public TextContent(IEnumerable<StringView> paras)
