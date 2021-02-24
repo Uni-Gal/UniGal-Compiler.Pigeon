@@ -49,7 +49,7 @@ namespace UniGal.Compiler.IR.Utilities
 			sr = rhs.sr;
 			Begin = rhs.Begin + beg;
 			Size = size;
-		} 
+		}
 		#endregion
 
 		#region 推荐使用的成员
@@ -120,7 +120,7 @@ namespace UniGal.Compiler.IR.Utilities
 		public override int GetHashCode()
 		{
 			return string.GetHashCode(AsSpan());
-		} 
+		}
 		#endregion
 
 		#region Span类操作

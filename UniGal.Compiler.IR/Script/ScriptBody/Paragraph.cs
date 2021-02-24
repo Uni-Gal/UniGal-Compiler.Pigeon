@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UniGal.Compiler.IR.Utilities;
 
 namespace UniGal.Compiler.IR.Script.ScriptBody
@@ -16,7 +11,7 @@ namespace UniGal.Compiler.IR.Script.ScriptBody
 		/// 该值指示这个段落是不是复合式段落（即包含XML标记）
 		/// </summary>
 		public readonly bool IsComplex = false;
-	
+
 		/// <summary>
 		/// 段落内容
 		/// </summary>

@@ -20,7 +20,7 @@ namespace UniGal.Compiler.IR.Utilities
 		/// <summary>透明分量</summary>
 		[FieldOffset(3)]
 		public byte A;
-		
+
 		/// <summary>
 		/// <para>打包的颜色值</para>
 		/// <para>建议判断一下当前平台的字节序</para>

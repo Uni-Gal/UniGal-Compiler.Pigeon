@@ -1,8 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace UniGal.Compiler.IR.Script
 {
@@ -33,10 +30,10 @@ namespace UniGal.Compiler.IR.Script
 		/// <summary>需要安装的再分发包</summary>
 		public record RedistPackage
 		{
-			#pragma warning disable CS1591
+#pragma warning disable CS1591
 			public string Name = "";
 			public string Version = "";
-			#pragma warning restore
+#pragma warning restore
 
 			/// <summary>
 			/// 确认该再分发包的值是否有效
@@ -71,7 +68,7 @@ namespace UniGal.Compiler.IR.Script
 		/// <summary>
 		/// ctor(Width, Height, IsFullscreen, Redists)
 		/// </summary>
-		public EnvironmentInfo(uint w, uint h, bool fullscreen, IEnumerable<RedistPackage> redists) : this(new(w,h,fullscreen),redists)
+		public EnvironmentInfo(uint w, uint h, bool fullscreen, IEnumerable<RedistPackage> redists) : this(new(w, h, fullscreen), redists)
 		{
 
 		}
