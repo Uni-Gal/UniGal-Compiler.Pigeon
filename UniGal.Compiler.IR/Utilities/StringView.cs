@@ -90,6 +90,17 @@ namespace UniGal.Compiler.IR.Utilities
 		/// </summary>
 		public static readonly StringView Empty = new(string.Empty, 0, 0);
 
+		/// <summary>
+		/// 指示这个<see cref="StringView"/>是不是空字符串
+		/// </summary>
+		/// <returns></returns>
+		public bool IsEmpty()
+		{
+			if (Size == 0 || sr == string.Empty)
+				return true;
+			return false;
+		}
+
 		#endregion
 
 		#region 屁用没有

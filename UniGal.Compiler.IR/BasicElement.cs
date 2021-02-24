@@ -10,8 +10,8 @@ namespace UniGal.Compiler.IR
 		/// <summary>直观编辑器所使用的注释</summary>
 		public StringView Comment = new StringView();
 		/// <summary>
-		/// 其它内容
+		/// 原始表示
 		/// </summary>
-		public StringView OtherContents = new StringView();
+		public StringView Raw = new StringView();
 	}
 }

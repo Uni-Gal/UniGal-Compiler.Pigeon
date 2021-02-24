@@ -3,7 +3,7 @@ using UniGal.Compiler.IR.Utilities;
 namespace UniGal.Compiler.IR.Script.ScriptBody
 {
 	/// <summary>
-	/// 说话的角色
+	/// 说话的角色，这玩意还有整成一张图的，建议后端灵活处理
 	/// </summary>
 	public class CharacterInfo : BasicElement
 	{
@@ -15,6 +15,10 @@ namespace UniGal.Compiler.IR.Script.ScriptBody
 		/// 姓名所显示的颜色
 		/// </summary>
 		public readonly Color NameColor;
+		/// <summary>
+		/// 该值指示这个角色是否具有除名字外的其它信息
+		/// </summary>
+		public readonly bool IsComplex;
 		/// <summary>
 		/// 读音标注
 		/// </summary>

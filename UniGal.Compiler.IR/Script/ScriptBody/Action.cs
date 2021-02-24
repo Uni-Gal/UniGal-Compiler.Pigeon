@@ -11,6 +11,9 @@ namespace UniGal.Compiler.IR.Script.ScriptBody
 		/// 不是无参数的Action就自己建一个数组
 		/// </summary>
 		protected KeyValuePair<string, StringView>[] ArgsImpl = Array.Empty<KeyValuePair<string, StringView>>();
+		/// <summary>
+		/// 附带参数列表
+		/// </summary>
 		public IReadOnlyList<KeyValuePair<string, StringView>> Args { get => ArgsImpl; }
 		/// <summary>
 		/// Action名称
