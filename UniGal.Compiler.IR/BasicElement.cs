@@ -12,6 +12,6 @@ namespace UniGal.Compiler.IR
 		/// <summary>
 		/// 原始表示
 		/// </summary>
-		public StringView Raw = new StringView();
+		public readonly string Raw = "";
 	}
 }

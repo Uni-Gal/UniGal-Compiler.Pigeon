@@ -19,6 +19,10 @@ namespace UniGal.Compiler.IR.Script.ScriptBody.Resource
 		/// 高
 		/// </summary>
 		public readonly uint Height;
+		/// <summary>
+		/// 自动加载
+		/// </summary>
+		public bool AutoLoad { get; init; } = true;
 
 		/// <summary>
 		/// 创建图像
