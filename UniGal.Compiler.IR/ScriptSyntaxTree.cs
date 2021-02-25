@@ -13,6 +13,10 @@ namespace UniGal.Compiler.IR
 		/// </summary>
 		public Metadata Metadata { get; init; }
 		/// <summary>
+		/// 主体
+		/// </summary>
+		public Body Body { get; init; }
+		/// <summary>
 		/// 运行环境属性
 		/// </summary>
 		public EnvironmentInfo? Environment { get; init; }
@@ -20,17 +24,15 @@ namespace UniGal.Compiler.IR
 		/// <summary>
 		/// ctor
 		/// </summary>
-		public ScriptSyntaxTree(Metadata md, EnvironmentInfo env)
+		public ScriptSyntaxTree(Metadata md, Body body, EnvironmentInfo? env)
 		{
 			Metadata = md;
+			Body = body;
 			Environment = env;
 		}
 		/// <summary>
 		/// ctor
 		/// </summary>
-		public ScriptSyntaxTree(Metadata md)
-		{
-			Metadata = md;
-		}
+		public ScriptSyntaxTree(Metadata md, Body body):this(md, body, null) { }
 	}
 }
