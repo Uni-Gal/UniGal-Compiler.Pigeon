@@ -50,48 +50,60 @@ namespace UniGal.Compiler.Frontend
 		public bool Parse()
 		{
 			using XmlReader r = XmlReader.Create(xml_stream);
-			Metadata? md;
-			EnvironmentInfo? rtenv;
-
-			if(r.ReadToFollowing("unigal"))
+			Metadata? md = null;
+			EnvironmentInfo? rtenv = null;
+			Body? body = null;
+			try
 			{
-				// 有效，开始解析
-				while(r.Read())
+				if (r.ReadToFollowing("unigal"))
 				{
-					switch (r.NodeType)
+					// 有效，开始解析
+					while (r.Read())
 					{
+						switch (r.NodeType)
+						{
 
-						case XmlNodeType.Element:
-							{
-								switch (r.Name)
+							case XmlNodeType.Element:
 								{
-									case "head":
-										md = responses.on_metadata(r, errors);
-										break;
-									case "body":
-
-										break;
-									case "environment":
-										rtenv = responses.on_rtenv(r, errors);
-										break;
+									switch (r.Name)
+									{
+										case "head":
+											md ??= responses.on_metadata(r, errors);
+											break;
+										case "body":
+											body ??= responses.on_scriptbody(r, errors);
+											break;
+										case "environment":
+											rtenv ??= responses.on_rtenv(r, errors);
+											break;
+									}
 								}
-							}
-							break;
-						case XmlNodeType.EndElement:
-							goto stop_parse;
-						default:
-							continue;
+								break;
+							case XmlNodeType.EndElement:
+								goto stop_parse;
+							default:
+								continue;
+						}
 					}
+				stop_parse:
+					AST = new ScriptSyntaxTree(
+						md ?? throw new ParseException(),
+						body ?? throw new ParseException(),
+						rtenv
+						);
 				}
-			stop_parse:;
+				else
+				{
+					// 无效，报错
+					errors.Add(new parser_error(3, ErrorServiety.CritialError, Array.Empty<string>(), "无效unigal文件"));
+					return false;
+				}
 			}
-			else
+			catch (ParseException)
 			{
-				// 无效，报错
-				errors.Add(new parser_error(3, ErrorServiety.CritialError, Array.Empty<string>(), "无效unigal文件"));
 				return false;
+				throw;
 			}
-
 			return true;
 		}
 
