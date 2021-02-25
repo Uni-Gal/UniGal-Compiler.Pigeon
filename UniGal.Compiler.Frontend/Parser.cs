@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 using System.Xml;
 
 using UniGal.Compiler.IR;
-
+using UniGal.Compiler.IR.Script;
+using UniGal.Compiler.IR.Utilities;
 namespace UniGal.Compiler.Frontend
 {
 	/// <summary>
@@ -20,7 +21,10 @@ namespace UniGal.Compiler.Frontend
 		/// 获取错误列表
 		/// </summary>
 		public IEnumerable<IR.CompilerError> Errors => errors;
-
+		/// <summary>
+		/// 解析前为null，解析失败值无意义
+		/// </summary>
+		public ScriptSyntaxTree? AST;
 		/// <summary>
 		/// 创建解析器
 		/// </summary>
@@ -46,11 +50,40 @@ namespace UniGal.Compiler.Frontend
 		public bool Parse()
 		{
 			using XmlReader r = XmlReader.Create(xml_stream);
-			
+			Metadata? md;
+			EnvironmentInfo? rtenv;
+
 			if(r.ReadToFollowing("unigal"))
 			{
 				// 有效，开始解析
+				while(r.Read())
+				{
+					switch (r.NodeType)
+					{
 
+						case XmlNodeType.Element:
+							{
+								switch (r.Name)
+								{
+									case "head":
+										md = responses.on_metadata(r, errors);
+										break;
+									case "body":
+
+										break;
+									case "environment":
+										rtenv = responses.on_rtenv(r, errors);
+										break;
+								}
+							}
+							break;
+						case XmlNodeType.EndElement:
+							goto stop_parse;
+						default:
+							continue;
+					}
+				}
+			stop_parse:;
 			}
 			else
 			{

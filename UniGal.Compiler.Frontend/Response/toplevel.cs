@@ -21,6 +21,16 @@ namespace UniGal.Compiler.Frontend
 			return ret;
 		}
 
+		internal static EnvironmentInfo on_rtenv(XmlReader r, List<CompilerError> errors)
+		{
+			uint w = 0;
+			uint h = 0;
+			bool fullscr=true;
+			List<EnvironmentInfo.RedistPackage> redists = new(4);
 
+
+			EnvironmentInfo ret = new(w, h, fullscr, redists);
+			return ret;
+		}
 	}
 }
