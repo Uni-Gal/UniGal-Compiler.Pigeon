@@ -47,7 +47,6 @@ namespace UniGal.Compiler.Frontend
 				uint w = 1920;
 				uint h = 1080;
 				bool fullscr = true;
-
 				while (r.Read())
 				{
 					if(r.NodeType == XmlNodeType.Element)
