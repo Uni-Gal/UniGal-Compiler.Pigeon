@@ -8,7 +8,7 @@ namespace UniGal.Compiler.IR
 	public class BasicElement
 	{
 		/// <summary>直观编辑器所使用的注释</summary>
-		public StringView Comment = new StringView();
+		public string Comment = "";
 		/// <summary>
 		/// 原始表示
 		/// </summary>

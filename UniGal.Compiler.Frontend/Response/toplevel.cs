@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,8 +23,60 @@ namespace UniGal.Compiler.Frontend
 		internal static Metadata on_metadata(XmlReader r, List<CompilerError> errors)
 		{
 			Metadata ret = new();
-
-			// r.
+			while (r.Read())
+			{
+				if(r.NodeType == XmlNodeType.Element)
+				{
+					while (r.Read() && r.NodeType != XmlNodeType.EndElement)
+					{
+						if (r.NodeType == XmlNodeType.Element)
+						{
+							try
+							{
+								switch (r.Name)
+								{
+									case "src":
+										ret.Source = r.Value;
+										break;
+									case "dst":
+										ret.Target = r.Value;
+										break;
+									case "src_engine":
+										ret.SourceEngine = r.Value;
+										break;
+									case "dst_engine":
+										ret.TargetEngine = r.Value;
+										break;
+									case "src_characterset":
+										ret.SourceEncoding = Encoding.GetEncoding(r.Value);
+										break;
+									case "dst_characterset":
+										ret.TargetEncoding = Encoding.GetEncoding(r.Value);
+										break;
+									case "src_language":
+										ret.SourceCulture = CultureInfo.GetCultureInfo(r.Value);
+										break;
+									case "dst_language":
+										ret.SourceCulture = CultureInfo.GetCultureInfo(r.Value);
+										break;
+									case "comment":
+										ret.Comment = on_comment(r);
+									default:
+										break;
+								}
+							}
+							catch (CultureNotFoundException e)
+							{
+								errors.Add(new parser_error(9002, ErrorServiety.Warning, new string[] { e.Message, e.InvalidCultureName! }, "出现脚本编译器不支持的语言"));
+							}
+							catch (ArgumentException e)
+							{
+								errors.Add(new parser_error(9002, ErrorServiety.Warning, new string[] { e.Message, e.ParamName! }, "出现脚本编译器不支持的编码"));
+							}
+						}
+					}
+				}
+			}
 			return ret;
 		}
 
