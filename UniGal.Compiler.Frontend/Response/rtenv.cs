@@ -41,6 +41,45 @@ namespace UniGal.Compiler.Frontend
 				}
 				return ret;
 			}
+
+			internal static EnvironmentInfo.Display on_display(XmlReader r, List<CompilerError> errors)
+			{
+				uint w = 1920;
+				uint h = 1080;
+				bool fullscr = true;
+
+				while (r.Read())
+				{
+					if(r.NodeType == XmlNodeType.Element)
+					{
+						switch (r.Name)
+						{
+							case "resolution":
+								string res = r.Value;
+								var xPos = res.IndexOf('x');
+								try
+								{
+									w = uint.Parse(res.AsSpan()[0..xPos]);
+									h = uint.Parse(res.AsSpan()[xPos..]);
+								}
+								catch (FormatException) { continue; }
+								catch (OverflowException) { continue; }
+								break;
+							case "fullscreen":
+								string strRepersent = r.Value;
+								if (bool.TryParse(strRepersent, out fullscr))
+									continue;
+								else
+									fullscr = true;
+								break;
+							default:
+								break;
+						}
+					}
+				}
+
+				return new(w, h, fullscr);
+			}
 		}
 	}
 }

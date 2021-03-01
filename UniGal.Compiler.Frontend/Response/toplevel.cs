@@ -29,11 +29,8 @@ namespace UniGal.Compiler.Frontend
 
 		internal static EnvironmentInfo on_rtenv(XmlReader r, List<CompilerError> errors)
 		{
-			uint w = 0;
-			uint h = 0;
-			bool fullscr=true;
 			List<EnvironmentInfo.RedistPackage> redists = new(4);
-
+			EnvironmentInfo.Display dispProp = new();
 			while (r.Read() && r.NodeType != XmlNodeType.EndElement)
 			{
 
@@ -45,6 +42,9 @@ namespace UniGal.Compiler.Frontend
 							case "redists":
 								redists = rtenv.on_redist(r, errors);
 								break;
+							case "display":
+								dispProp = rtenv.on_display(r, errors);
+								break;
 							default:
 								break;
 						}
@@ -54,7 +54,7 @@ namespace UniGal.Compiler.Frontend
 				}
 			}			
 			
-			EnvironmentInfo ret = new(w, h, fullscr, redists);
+			EnvironmentInfo ret = new(dispProp, redists);
 			return ret;
 		}
 
