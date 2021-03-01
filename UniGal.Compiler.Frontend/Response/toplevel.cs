@@ -13,6 +13,7 @@ namespace UniGal.Compiler.Frontend
 {
 	internal partial class responses
 	{
+		// 可视化设计器的注释
 		internal static string on_comment(XmlReader r)
 		{
 			return r.ReadContentAsString();
@@ -33,7 +34,26 @@ namespace UniGal.Compiler.Frontend
 			bool fullscr=true;
 			List<EnvironmentInfo.RedistPackage> redists = new(4);
 
+			while (r.Read() && r.NodeType != XmlNodeType.EndElement)
+			{
 
+				switch (r.NodeType)
+				{
+					case XmlNodeType.Element:
+						switch (r.Name)
+						{
+							case "redists":
+								redists = rtenv.on_redist(r, errors);
+								break;
+							default:
+								break;
+						}
+						break;
+					default:
+						break;
+				}
+			}			
+			
 			EnvironmentInfo ret = new(w, h, fullscr, redists);
 			return ret;
 		}
