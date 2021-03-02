@@ -16,6 +16,10 @@ namespace UniGal.Compiler.IR.Script.ScriptBody
 		/// </summary>
 		public readonly CharacterInfo? Character;
 		/// <summary>
+		/// 跳转时用的标签
+		/// </summary>
+		public readonly string? Label = null;
+		/// <summary>
 		/// 构造函数
 		/// </summary>
 		/// <param name="paras">段落的集合</param>
