@@ -25,7 +25,7 @@ namespace UniGal.Compiler.Frontend
 			Metadata ret = new();
 			while (r.Read())
 			{
-				if(r.NodeType == XmlNodeType.Element)
+				if (r.NodeType == XmlNodeType.Element)
 				{
 					while (r.Read() && r.NodeType != XmlNodeType.EndElement)
 					{
@@ -68,11 +68,15 @@ namespace UniGal.Compiler.Frontend
 							}
 							catch (CultureNotFoundException e)
 							{
-								errors.Add(new parser_error(9002, ErrorServiety.Warning, new string[] { e.Message, e.InvalidCultureName! }, "出现脚本编译器不支持的语言"));
+								errors.Add(new ParserError(
+									9002, ErrorServiety.Warning, new string[] { e.Message, e.InvalidCultureName! },
+									"出现脚本编译器不支持的语言"));
 							}
 							catch (ArgumentException e)
 							{
-								errors.Add(new parser_error(9002, ErrorServiety.Warning, new string[] { e.Message, e.ParamName! }, "出现脚本编译器不支持的编码"));
+								errors.Add(new ParserError(
+									9002, ErrorServiety.Warning, new string[] { e.Message, e.ParamName! },
+									"出现脚本编译器不支持的编码"));
 							}
 						}
 					}
@@ -106,22 +110,44 @@ namespace UniGal.Compiler.Frontend
 					default:
 						break;
 				}
-			}			
-			
+			}
+
 			EnvironmentInfo ret = new(dispProp, redists);
 			return ret;
 		}
 
 		internal static Body on_scriptbody(XmlReader r, List<CompilerError> errors)
 		{
-			Codes code = new();
 			List<ScriptText> texts = new(40);
+			Codes? code = null;
+			string? comment = null;
+			while (r.Read() && r.NodeType != XmlNodeType.EndElement)
+			{
+				if (r.NodeType == XmlNodeType.Element)
+				{
+					switch (r.Value)
+					{
+						case "code":
+							code = body.on_code(r, errors);
+							break;
+						case "text":
+							texts.Add(body_text.on_text(r, errors));
+							break;
+						case "comment":
+							comment = on_comment(r);
+							break;
+						default:
+							break;
+					}
+				}
+			}
 
 			Body ret = new Body()
 			{
-				Code = code,
-				Texts = texts
+				Code = code ?? new Codes(),
+				Texts = texts,
 			};
+			ret.Comment = comment ?? "";
 			return ret;
 		}
 	}
