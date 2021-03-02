@@ -95,12 +95,23 @@ namespace UniGal.Compiler.Frontend
 				else
 				{
 					// 无效，报错
-					errors.Add(new parser_error(3, ErrorServiety.CritialError, Array.Empty<string>(), "无效unigal文件"));
+					errors.Add(new ParserError(3, ErrorServiety.CritialError, Array.Empty<string>(), "无效unigal文件"));
 					return false;
 				}
 			}
-			catch (ParseException)
+			catch (XmlException e)
 			{
+				var errobj = new ParserError(2, ErrorServiety.CritialError, new string[] {
+					"",
+					e.Message,
+					string.Format("第{0}行, {1}个字符", e.LineNumber.ToString(), e.LinePosition)
+				}, "XML文档有问题");
+
+				throw new ParseException(errobj, e);
+			}
+			catch (ParseException e)
+			{
+				errors.Add(e.)
 				return false;
 				throw;
 			}

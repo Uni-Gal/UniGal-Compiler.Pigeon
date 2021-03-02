@@ -1,20 +1,31 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace UniGal.Compiler.Frontend
 {
-
+	/// <summary>
+	/// 解析过程中发生的异常
+	/// </summary>
 	[Serializable]
-#pragma warning disable IDE1006
-	internal class ParseException : Exception
+	public class ParseException : Exception
 	{
-		public ParseException() { }
-		public ParseException(string message) : base(message) { }
-		public ParseException(string message, Exception inner) : base(message, inner) { }
-		protected ParseException(
+
+		private const string data_site = "UniGal.Compiler.FrontEnd.ParseException ";
+		/// <summary>
+		/// 解析器错误
+		/// </summary>
+		public ParserError ParserError
+		{
+			get
+			{
+				ParserError? val = (ParserError?)Data[data_site + "errobj"];
+				return util.assert_notnull(val);
+			}
+			private set => Data[data_site + "errobj"] = value;
+		}
+
+		internal ParseException(ParserError e) : base(e.Explaination) { ParserError = e; }
+		internal ParseException(ParserError e, Exception inner) : base(e.Explaination, inner) { ParserError = e; }
+		internal ParseException(
 		  System.Runtime.Serialization.SerializationInfo info,
 		  System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
 	}

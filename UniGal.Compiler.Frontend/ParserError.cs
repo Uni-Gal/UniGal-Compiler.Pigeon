@@ -7,10 +7,10 @@ using UniGal.Compiler.IR;
 
 namespace UniGal.Compiler.Frontend
 {
-	internal class parser_error : CompilerError
+	public class ParserError : CompilerError
 	{
 
-		public parser_error(ushort errc, ErrorServiety serviety, IEnumerable<string> msgs, string explain):base(new(errc,serviety), msgs)
+		internal ParserError(ushort errc, ErrorServiety serviety, IEnumerable<string> msgs, string explain):base(new(errc,serviety), msgs)
 		{
 			Explaination = explain;
 		}
