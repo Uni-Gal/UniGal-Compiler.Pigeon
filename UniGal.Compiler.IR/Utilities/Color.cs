@@ -17,7 +17,7 @@ namespace UniGal.Compiler.IR.Utilities
 		/// <summary>蓝色分量</summary>
 		[FieldOffset(2)]
 		public byte B;
-		/// <summary>透明分量</summary>
+		/// <summary>透明分量，透明度Transparentcy</summary>
 		[FieldOffset(3)]
 		public byte A;
 
