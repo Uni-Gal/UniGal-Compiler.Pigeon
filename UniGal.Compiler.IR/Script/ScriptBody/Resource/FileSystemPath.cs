@@ -1,6 +1,6 @@
 using UniGal.Compiler.IR.Utilities;
 
-namespace UniGal.Compiler.IR.Script.ScriptBody.Resource
+namespace UniGal.Compiler.IR.Script.Resource
 {
 	/// <summary>
 	/// 文件系统路径
@@ -10,11 +10,11 @@ namespace UniGal.Compiler.IR.Script.ScriptBody.Resource
 		/// <summary>
 		/// 包名
 		/// </summary>
-		public readonly StringView Package;
+		public readonly string Package;
 		/// <summary>
 		/// 包内路径
 		/// </summary>
-		public readonly StringView Path;
+		public readonly string Path;
 
 		/// <summary>
 		/// 创建空路径
@@ -29,15 +29,15 @@ namespace UniGal.Compiler.IR.Script.ScriptBody.Resource
 		/// </summary>
 		/// <param name="package"></param>
 		/// <param name="path"></param>
-		public FileSystemPath(StringView package, StringView path)
+		public FileSystemPath(string package, string path)
 		{
 			Package = package;
 			Path = path;
 		}
 
-		public FileSystemPath(StringView path)
+		public FileSystemPath(string path)
 		{
-			Package = StringView.Empty;
+			Package = "";
 			Path = path;
 		}
 	}

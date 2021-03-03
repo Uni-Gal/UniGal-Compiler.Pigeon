@@ -1,4 +1,4 @@
-namespace UniGal.Compiler.IR.Script.ScriptBody.Resource
+namespace UniGal.Compiler.IR.Script.Resource
 {
 	/// <summary>
 	/// 图像资源
@@ -31,7 +31,7 @@ namespace UniGal.Compiler.IR.Script.ScriptBody.Resource
 		/// <param name="path">图像路径</param>
 		/// <param name="w">宽</param>
 		/// <param name="h">高</param>
-		public Image(int id, FileSystemPath path, uint w, uint h) : base(id, path)
+		public Image(string id, FileSystemPath path, uint w, uint h) : base(id, path)
 		{
 			Width = w;
 			Height = h;

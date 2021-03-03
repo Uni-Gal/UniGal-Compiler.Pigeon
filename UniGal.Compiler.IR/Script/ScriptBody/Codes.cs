@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using UniGal.Compiler.IR.Script.ScriptBody.Resource;
+using UniGal.Compiler.IR.Script.Resource;
 
 namespace UniGal.Compiler.IR.Script.ScriptBody
 {
@@ -16,5 +16,12 @@ namespace UniGal.Compiler.IR.Script.ScriptBody
 		public readonly IEnumerable<Audio> Audios;
 		public readonly IEnumerable<Image> Images;
 		public readonly IEnumerable<Action> Actions;
+
+		public Codes(IEnumerable<Audio> audios, IEnumerable<Image> imgs, IEnumerable<Action> actions)
+		{
+			Audios = audios;
+			Images = imgs;
+			Actions = actions;
+		}
 	}
 }

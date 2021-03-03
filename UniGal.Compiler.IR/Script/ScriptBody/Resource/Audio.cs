@@ -1,4 +1,4 @@
-namespace UniGal.Compiler.IR.Script.ScriptBody.Resource
+namespace UniGal.Compiler.IR.Script.Resource
 {
 	/// <summary>
 	/// 音频资源
@@ -11,7 +11,7 @@ namespace UniGal.Compiler.IR.Script.ScriptBody.Resource
 		/// </summary>
 		/// <param name="id"></param>
 		/// <param name="path"></param>
-		public Audio(int id, FileSystemPath path) : base(id, path)
+		public Audio(string id, FileSystemPath path) : base(id, path)
 		{
 
 		}

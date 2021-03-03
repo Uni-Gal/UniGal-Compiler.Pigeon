@@ -128,7 +128,7 @@ namespace UniGal.Compiler.Frontend
 					switch (r.Value)
 					{
 						case "code":
-							code = body.on_code(r, errors);
+							code = body_code.on_code(r, errors);
 							break;
 						case "text":
 							texts.Add(body_text.on_text(r, errors));
