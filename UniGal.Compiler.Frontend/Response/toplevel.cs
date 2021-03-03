@@ -8,7 +8,7 @@ using System.Xml;
 using UniGal.Compiler.IR;
 using UniGal.Compiler.IR.Script;
 using UniGal.Compiler.IR.Script.ScriptBody;
-using UniGal.Compiler.IR.Utilities;
+using UniGal.Compiler.IR.Script.Resource;
 
 namespace UniGal.Compiler.Frontend
 {
@@ -144,7 +144,7 @@ namespace UniGal.Compiler.Frontend
 
 			Body ret = new Body()
 			{
-				Code = code ?? new Codes(),
+				Code = code ?? new Codes(Array.Empty<Audio>(), Array.Empty<Image>(), Array.Empty<IR.Script.ScriptBody.Action>()),
 				Texts = texts,
 			};
 			ret.Comment = comment ?? "";

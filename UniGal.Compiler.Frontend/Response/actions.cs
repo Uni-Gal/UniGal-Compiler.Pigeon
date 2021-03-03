@@ -22,12 +22,12 @@ namespace UniGal.Compiler.Frontend
 					Handler = handler;
 				}
 			}
-			private class action_handler_costum
+			private class action_handler_custom
 			{
 
 			}
 			private static List<action_handler> predefined = new(24);
-			private static List<action_handler_costum> custom = new(8);
+			private static List<action_handler_custom> custom = new(8);
 			static action()
 			{
 

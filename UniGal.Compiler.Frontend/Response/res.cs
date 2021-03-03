@@ -70,7 +70,7 @@ namespace UniGal.Compiler.Frontend
 				}
 			}
 
-			internal static Image on_image(XmlReader r)
+			internal static Image on_image(XmlReader r, List<CompilerError> errors)
 			{
 				XmlDocument dom = new();
 				dom.Load(r);
@@ -82,10 +82,14 @@ namespace UniGal.Compiler.Frontend
 					?? throw new ParseException(
 						new(9001, ErrorServiety.CritialError,
 						new string[] { image.InnerText }, "resource.image.img_ID不存在，或img_ID为空字符串"));
-				string pathStr = image["file"]?.Value
-					?? throw new ParseException(
-						new(9001, ErrorServiety.CritialError,
-						new string[] { image.InnerText }, "resource.image.file不存在，或file为空字符串"));
+				string? pathStr = image["file"]?.Value;
+				if (pathStr == null)
+				{
+					ParserError err = new(9002, ErrorServiety.Warning,
+						new string[] { image.InnerText, "这不太好" }, "resource.image.file不存在，或file为空字符串");
+					errors.Add(err);
+					pathStr = "";
+				}
 
 				XmlNode size = image["size"]
 					?? throw new ParseException(
@@ -115,7 +119,7 @@ namespace UniGal.Compiler.Frontend
 				return new Image(id, make_fspath_unsafe(pathStr), w, h);
 			}
 
-			internal static Audio on_audio(XmlReader r)
+			internal static Audio on_audio(XmlReader r, List<CompilerError> errors)
 			{
 				XmlDocument dom = new();
 				dom.Load(r);
@@ -126,13 +130,16 @@ namespace UniGal.Compiler.Frontend
 				string id = snd["sound_ID"]?.Value
 					?? throw new ParseException(
 						new(9001, ErrorServiety.CritialError,
-						new string[] { snd.InnerText }, "resource.image.sound_ID不存在，或sound_ID为空字符串"));
+						new string[] { snd.InnerText }, "resource.sound.sound_ID不存在，或sound_ID为空字符串"));
 
-				string pathStr = snd["file"]?.Value
-					?? throw new ParseException(
-						new(9001, ErrorServiety.CritialError,
-						new string[] { snd.InnerText }, "resource.image.file不存在，或file为空字符串"));
-
+				string? pathStr = snd["file"]?.Value;
+				if (pathStr == null)
+				{
+					ParserError err = new(9002, ErrorServiety.Warning,
+						new string[] { snd.InnerText, "这不太好" }, "resource.sound.file不存在，或file为空字符串");
+					errors.Add(err);
+					pathStr = "";
+				}
 				return new Audio(id, make_fspath_unsafe(pathStr));
 			}
 		}
