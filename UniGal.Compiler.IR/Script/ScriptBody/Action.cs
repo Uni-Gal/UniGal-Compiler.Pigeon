@@ -10,25 +10,25 @@ namespace UniGal.Compiler.IR.Script.ScriptBody
 		/// <summary>
 		/// 不是无参数的Action就自己建一个数组
 		/// </summary>
-		protected KeyValuePair<string, StringView>[] ArgsImpl = Array.Empty<KeyValuePair<string, StringView>>();
+		protected KeyValuePair<string, string>[] ArgsImpl = Array.Empty<KeyValuePair<string, string>>();
 		/// <summary>
 		/// 附带参数列表
 		/// </summary>
-		public IReadOnlyList<KeyValuePair<string, StringView>> Args { get => ArgsImpl; }
+		public IReadOnlyList<KeyValuePair<string, string>> Args { get => ArgsImpl; }
 		/// <summary>
 		/// Action名称
 		/// </summary>
 		public string Name { get; init; }
 		/// <summary>
-		/// 附加的参数
+		/// 附加的文本
 		/// </summary>
-		public StringView AdditionalArg { get; init; }
+		public string AdditionalText { get; init; }
 		/// <summary>
 		/// 获取参数
 		/// </summary>
 		/// <param name="argname"></param>
 		/// <returns></returns>
-		public StringView FindArg(string argname)
+		public string FindArg(string argname)
 		{
 			foreach (var arg in ArgsImpl)
 				if (arg.Key == argname)

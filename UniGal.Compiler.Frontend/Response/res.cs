@@ -36,11 +36,11 @@ namespace UniGal.Compiler.Frontend
 					var packageFile = spanFull[packageQuote..packageQuote2].ToString();
 					var innerPath = spanFull[firstQuote..secondQuote].ToString();
 					return new FileSystemPath(
-						packageFile ?? throw new ParseException(
+						string.IsNullOrEmpty(packageFile) ? packageFile : throw new ParseException(
 							new (9001, ErrorServiety.CritialError,
 							new string[] { pathStr },
 							"包内路径格式不对，建议查看详细信息检查")),
-						innerPath ?? throw new ParseException(
+						string.IsNullOrEmpty(innerPath) ? innerPath : throw new ParseException(
 							new(9001, ErrorServiety.CritialError,
 							new string[] { pathStr },
 							"包内路径格式不对，建议查看详细信息检查"))
@@ -93,18 +93,23 @@ namespace UniGal.Compiler.Frontend
 						new string[] { image.InnerText }, "resource.image.size为空"));
 
 
-				XmlNode xWidth = size["x"];
-				XmlNode xHeight = size["y"];
+				XmlNode? xWidth = size["x"];
+				XmlNode? xHeight = size["y"];
 
 				uint w, h;
 
 				if(xWidth != null && xHeight != null)
 				{
+					string? wStr = xWidth.Value;
+					string? hStr = xHeight.Value;
 
+					_ = uint.TryParse(wStr, out w);
+					_ = uint.TryParse(hStr, out h);
 				}
 				else
 				{
-
+					w = 0;
+					h = 0;
 				}
 
 				return new Image(id, make_fspath_unsafe(pathStr), w, h);
