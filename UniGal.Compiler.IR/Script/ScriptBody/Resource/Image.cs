@@ -9,14 +9,14 @@ namespace UniGal.Compiler.IR.Script.Resource
 		/// <summary>
 		/// 256级透明度
 		/// </summary>
-		public byte Alpha { get; init; } = 255;
+		public byte Alpha { get; init; } = 0;
 
 		/// <summary>
-		/// 宽
+		/// 宽，引擎自动确定时，值为0
 		/// </summary>
 		public readonly uint Width;
 		/// <summary>
-		/// 高
+		/// 高，引擎自动确定时，值为0
 		/// </summary>
 		public readonly uint Height;
 		/// <summary>
@@ -25,7 +25,7 @@ namespace UniGal.Compiler.IR.Script.Resource
 		public bool AutoLoad { get; init; } = true;
 
 		/// <summary>
-		/// 创建图像
+		/// 创建图像资源
 		/// </summary>
 		/// <param name="id">图像ID</param>
 		/// <param name="path">图像路径</param>
@@ -36,6 +36,15 @@ namespace UniGal.Compiler.IR.Script.Resource
 			Width = w;
 			Height = h;
 		}
-
+		/// <summary>
+		/// 创建图像资源
+		/// </summary>
+		/// <param name="id">图像ID</param>
+		/// <param name="path">图像路径</param>
+		public Image(string id, FileSystemPath path) :base(id, path)
+		{
+			Width = 0;
+			Height = 0;
+		}
 	}
 }

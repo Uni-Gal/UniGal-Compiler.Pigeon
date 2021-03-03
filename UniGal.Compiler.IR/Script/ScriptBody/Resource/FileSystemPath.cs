@@ -21,7 +21,8 @@ namespace UniGal.Compiler.IR.Script.Resource
 		/// </summary>
 		public FileSystemPath()
 		{
-
+			Package = "";
+			Path = "";
 		}
 
 		/// <summary>
@@ -35,6 +36,10 @@ namespace UniGal.Compiler.IR.Script.Resource
 			Path = path;
 		}
 
+		/// <summary>
+		/// 创建包外路径
+		/// </summary>
+		/// <param name="path"></param>
 		public FileSystemPath(string path)
 		{
 			Package = "";
