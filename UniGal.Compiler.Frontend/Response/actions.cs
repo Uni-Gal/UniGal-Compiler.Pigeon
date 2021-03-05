@@ -2,17 +2,46 @@ using System;
 using System.Collections.Generic;
 using System.Xml;
 using UniGal.Compiler.IR;
-using Action = UniGal.Compiler.IR.Script.ScriptBody.Action;
+using ActionRecord = UniGal.Compiler.IR.Script.ScriptBody.ActionRecord;
 
 namespace UniGal.Compiler.Frontend
 {
+	/// <summary>
+	/// 拓展
+	/// </summary>
+	public record ExtensionRecord
+	{
+		/// <summary>
+		/// 拓展的名称
+		/// </summary>
+		public string Name;
+		/// <summary>
+		/// 包围的XML
+		/// </summary>
+		public string InnerText;
+		/// <summary>
+		/// XML属性形式参数的列表
+		/// </summary>
+		public IReadOnlyDictionary<string, string> Args;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public ExtensionRecord(string name, string inner, IReadOnlyDictionary<string, string> args)
+		{
+			Name = name;
+			InnerText = inner;
+			Args = args;
+		}
+	}
+
 	internal partial class responses
 	{
 		internal static class action
 		{
 			private class action_handler
 			{
-				public delegate Action HandlerFunction(Dictionary<string, string> args);
+				public delegate ActionRecord HandlerFunction(Dictionary<string, string> args);
 				public string Name { get; init; }
 				public HandlerFunction Handler { get; init; }
 
@@ -22,12 +51,9 @@ namespace UniGal.Compiler.Frontend
 					Handler = handler;
 				}
 			}
-			private class action_handler_custom
-			{
-
-			}
-			private static List<action_handler> predefined = new(24);
-			private static List<action_handler_custom> custom = new(8);
+			private readonly static List<action_handler> predefined = new(24);
+			// IReadOnlyList<T>
+			// private static List<ActionRecord> custom = new(8);
 			static action()
 			{
 

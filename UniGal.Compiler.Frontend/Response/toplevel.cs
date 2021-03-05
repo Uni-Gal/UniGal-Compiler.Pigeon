@@ -144,7 +144,7 @@ namespace UniGal.Compiler.Frontend
 
 			Body ret = new Body()
 			{
-				Code = code ?? new Codes(Array.Empty<Audio>(), Array.Empty<Image>(), Array.Empty<IR.Script.ScriptBody.Action>()),
+				Code = code ?? new Codes(Array.Empty<Audio>(), Array.Empty<Image>(), Array.Empty<IR.Script.ScriptBody.ActionRecord>()),
 				Texts = texts,
 			};
 			ret.Comment = comment ?? "";

@@ -15,9 +15,9 @@ namespace UniGal.Compiler.IR.Script.ScriptBody
 	{
 		public readonly IEnumerable<Audio> Audios;
 		public readonly IEnumerable<Image> Images;
-		public readonly IEnumerable<Action> Actions;
+		public readonly IEnumerable<ActionRecord> Actions;
 
-		public Codes(IEnumerable<Audio> audios, IEnumerable<Image> imgs, IEnumerable<Action> actions)
+		public Codes(IEnumerable<Audio> audios, IEnumerable<Image> imgs, IEnumerable<ActionRecord> actions)
 		{
 			Audios = audios;
 			Images = imgs;

@@ -14,7 +14,7 @@ namespace UniGal.Compiler.Frontend
 			{
 				List<Audio> audios = new(8);
 				List<Image> images = new(10);
-				List<Action> actions = new(2);
+				List<ActionRecord> actions = new(2);
 				Codes ret = new(audios, images, actions);
 
 				while (r.Read())

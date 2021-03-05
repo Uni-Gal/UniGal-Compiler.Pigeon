@@ -5,7 +5,7 @@ using UniGal.Compiler.IR.Utilities;
 
 namespace UniGal.Compiler.IR.Script.ScriptBody
 {
-	public class Action
+	public record ActionRecord
 	{
 		/// <summary>
 		/// 不是无参数的Action就自己建一个数组
@@ -20,9 +20,9 @@ namespace UniGal.Compiler.IR.Script.ScriptBody
 		/// </summary>
 		public string Name { get; init; }
 		/// <summary>
-		/// 附加的文本
+		/// 包围的文本
 		/// </summary>
-		public string AdditionalText { get; init; }
+		public string InnerText { get; init; }
 		/// <summary>
 		/// 获取参数
 		/// </summary>
@@ -40,10 +40,10 @@ namespace UniGal.Compiler.IR.Script.ScriptBody
 		/// <summary>
 		/// 创建Action代码元素
 		/// </summary>
-		/// <param name="name"></param>
-		public Action(string name)
+		public ActionRecord(string name, string inner)
 		{
 			Name = name;
+			InnerText = inner;
 		}
 	}
 }
