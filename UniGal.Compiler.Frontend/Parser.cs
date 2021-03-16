@@ -22,7 +22,7 @@ namespace UniGal.Compiler.Frontend
 		/// </summary>
 		public IEnumerable<CompilerError> Problems => problems;
 		/// <summary>
-		/// 关键性错误
+		/// 是否存在关键性错误，即解析失败
 		/// </summary>
 		public bool HasCriticialError
 		{
@@ -52,7 +52,7 @@ namespace UniGal.Compiler.Frontend
 		/// 创建解析器
 		/// </summary>
 		/// <param name="xmlStreamReader"></param>
-		public Parser(TextReader xmlStreamReader) : this()
+		public Parser(TextReader xmlStreamReader)
 		{
 			xml_stream = xmlStreamReader;
 		}
