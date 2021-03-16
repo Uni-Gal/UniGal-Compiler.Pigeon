@@ -17,7 +17,7 @@ namespace UniGal.Compiler.Frontend
 				List<ActionRecord> actions = new(2);
 				Codes ret = new(audios, images, actions);
 
-				while (r.Read())
+				while (r.Read() && r.NodeType != XmlNodeType.EndElement && r.Name != "code")
 				{
 					if(r.NodeType == XmlNodeType.Element)
 					{
@@ -31,10 +31,10 @@ namespace UniGal.Compiler.Frontend
 										case asset_type.not_asset:
 											goto stop_parse1;
 										case asset_type.audio:
-											audios.Add(res.on_audio(r));
+											audios.Add(res.on_audio(r, errors));
 											break;
 										case asset_type.image:
-											images.Add(res.on_image(r));
+											images.Add(res.on_image(r, errors));
 											break;
 										default:
 											goto stop_parse1;

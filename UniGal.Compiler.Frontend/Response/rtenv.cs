@@ -16,29 +16,22 @@ namespace UniGal.Compiler.Frontend
 			internal static List<EnvironmentInfo.RedistPackage> on_redist(XmlReader r, List<CompilerError> errors)
 			{
 				List<EnvironmentInfo.RedistPackage> ret = new(4);
-				string? redistName = null;
-				string? redistVer = null;
-				// <redists>
-				while (r.Read() && r.NodeType != XmlNodeType.Element)
+
+				XmlDocument dom = new();
+				dom.Load(r);
+				XmlNodeList? xredists = dom["redists"]?.ChildNodes;
+				if (xredists != null && xredists.Item(0)?.NodeType == XmlNodeType.Element)
 				{
-					// <redist ...>
-					while (r.Read())
+					foreach (XmlElement elem in xredists)
 					{
-						if (r.NodeType == XmlNodeType.Element)
-						{
-							redistName = r.Name;
-							// props
-							while(r.Read() && r.NodeType != XmlNodeType.EndElement)
-								if (r.NodeType == XmlNodeType.Attribute && r.Name == "version")
-									redistVer = r.Value;
-						}
 						ret.Add(new()
 						{
-							Name = redistName ?? throw new ParseException("某再分发包不存在Name"),
-							Version = redistVer ?? ""
+							Name = elem.Name,
+							Version = elem.GetAttribute("version")
 						});
-					}
+					} 
 				}
+
 				return ret;
 			}
 

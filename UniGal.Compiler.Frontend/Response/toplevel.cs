@@ -23,7 +23,7 @@ namespace UniGal.Compiler.Frontend
 		internal static Metadata on_metadata(XmlReader r, List<CompilerError> errors)
 		{
 			Metadata ret = new();
-			while (r.Read())
+			while (r.Read() && r.NodeType != XmlNodeType.EndElement && r.Name != "head")
 			{
 				if (r.NodeType == XmlNodeType.Element)
 				{
@@ -89,7 +89,7 @@ namespace UniGal.Compiler.Frontend
 		{
 			List<EnvironmentInfo.RedistPackage> redists = new(4);
 			EnvironmentInfo.Display dispProp = new();
-			while (r.Read() && r.NodeType != XmlNodeType.EndElement)
+			while (r.Read() && r.NodeType != XmlNodeType.EndElement && r.Name != "environment")
 			{
 
 				switch (r.NodeType)
@@ -142,7 +142,7 @@ namespace UniGal.Compiler.Frontend
 				}
 			}
 
-			Body ret = new Body()
+			Body ret = new()
 			{
 				Code = code ?? new Codes(Array.Empty<Audio>(), Array.Empty<Image>(), Array.Empty<IR.Script.ScriptBody.ActionRecord>()),
 				Texts = texts,

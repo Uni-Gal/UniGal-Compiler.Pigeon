@@ -17,7 +17,7 @@ namespace UniGal.Compiler.Frontend
 			{
 				List<Page> pages = new(20);
 				ScriptText ret = new(pages);
-				while (r.Read() && r.NodeType != XmlNodeType.EndElement)
+				while (r.Read() && r.NodeType != XmlNodeType.EndElement && r.Name != "text")
 				{
 					if (r.NodeType == XmlNodeType.Element)
 					{

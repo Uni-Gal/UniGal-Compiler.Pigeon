@@ -11,9 +11,10 @@ namespace UniGal.Compiler.Frontend.Actions
 	/// </summary>
 	public delegate ActionRecord ActionParseHandler(string name, IReadOnlyDictionary<string, string> args, string inner);
 
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员的 XML 注释
+	/// <summary>
+	/// 预定义的Action列表
+	/// </summary>
 	public static class PredefinedActions
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员的 XML 注释
 	{
 		private static Dictionary<string, ActionParseHandler>? predefined;
 
