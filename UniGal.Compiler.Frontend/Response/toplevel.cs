@@ -121,7 +121,7 @@ namespace UniGal.Compiler.Frontend
 			List<ScriptText> texts = new(40);
 			Codes? code = null;
 			string? comment = null;
-			while (r.Read() && r.NodeType != XmlNodeType.EndElement)
+			while (r.Read() && r.NodeType != XmlNodeType.EndElement && r.Name != "body")
 			{
 				if (r.NodeType == XmlNodeType.Element)
 				{

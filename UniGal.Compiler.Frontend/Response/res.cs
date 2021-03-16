@@ -74,7 +74,7 @@ namespace UniGal.Compiler.Frontend
 			{
 				XmlDocument dom = new();
 				dom.Load(r);
-				XmlNode image = dom["image"] ??
+				XmlNode image = dom["resource/image"] ??
 					throw new ParseException(
 						new(9001, ErrorServiety.CritialError,
 						new string[] { dom.InnerText }, "\"type\"属性为\"image\"的resource元素没有image元素"));
@@ -123,7 +123,7 @@ namespace UniGal.Compiler.Frontend
 			{
 				XmlDocument dom = new();
 				dom.Load(r);
-				XmlNode snd = dom["sound"] ??
+				XmlNode snd = dom["resource/sound"] ??
 					throw new ParseException(
 						new(9001, ErrorServiety.CritialError,
 						new string[] { dom.InnerText }, "\"type\"属性为\"sound\"的resource元素没有sound元素"));

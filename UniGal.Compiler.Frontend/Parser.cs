@@ -13,7 +13,7 @@ namespace UniGal.Compiler.Frontend
 	/// <summary>
 	/// 解析器
 	/// </summary>
-	public class Parser
+	public class Parser : IDisposable
 	{
 		private readonly List<IR.CompilerError> problems = new(100);
 		private readonly TextReader xml_stream;
@@ -39,10 +39,12 @@ namespace UniGal.Compiler.Frontend
 		/// 解析前为null，解析失败值无意义
 		/// </summary>
 		public ScriptSyntaxTree? AST;
+		private bool is_disposed;
+
 		/// <summary>
 		/// 创建解析器
 		/// </summary>
-		/// <param name="path"></param>
+		/// <param name="path">文件路径</param>
 		public Parser(string path)
 		{
 			xml_stream = File.OpenText(path);
@@ -139,5 +141,27 @@ namespace UniGal.Compiler.Frontend
 		{
 			return Task.Run(Parse);
 		}
+
+#pragma warning disable CS1591 // Dispose不用写了，懂得都懂
+		protected virtual void Dispose(bool disposing)
+		{
+			if (!is_disposed)
+			{
+				if (disposing)
+				{
+					xml_stream.Dispose();
+				}
+
+				is_disposed = true;
+			}
+		}
+
+		public void Dispose()
+		{
+			// 不要更改此代码。请将清理代码放入“Dispose(bool disposing)”方法中
+			Dispose(disposing: true);
+			GC.SuppressFinalize(this);
+		}
+#pragma warning restore
 	}
 }
