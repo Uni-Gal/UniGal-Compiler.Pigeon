@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Xml;
 using UniGal.Compiler.IR;
-using ActionRecord = UniGal.Compiler.IR.Script.ScriptBody.ActionRecord;
 
 namespace UniGal.Compiler.Frontend
 {
@@ -39,27 +38,32 @@ namespace UniGal.Compiler.Frontend
 	{
 		internal static class action
 		{
-			private class action_handler
-			{
-				public delegate ActionRecord HandlerFunction(Dictionary<string, string> args);
-				public string Name { get; init; }
-				public HandlerFunction Handler { get; init; }
-
-				public action_handler(string name, HandlerFunction handler)
-				{
-					Name = name;
-					Handler = handler;
-				}
-			}
-			private readonly static List<action_handler> predefined = new(24);
-			// IReadOnlyList<T>
-			// private static List<ActionRecord> custom = new(8);
-			static action()
-			{
-
-			}
-
 			internal static void on_action(XmlReader r, List<CompilerError> errors)
+			{
+				try
+				{
+					string name = r.Name;
+					Dictionary<string, string> args = new();
+					XmlDocument dom = new();
+					dom.Load(r);
+					XmlAttributeCollection? attrs = dom.Attributes;
+
+					if (attrs != null)
+						foreach (XmlAttribute attr in attrs)
+							args.Add(attr.Name, attr.Value);
+
+					string inner = dom.InnerText;
+
+					Actions.PredefinedActions.Get()[name](name, args, inner);
+				}
+				catch (KeyNotFoundException e)
+				{
+					errors.Add(new ParserError(9002, ErrorServiety.Warning, new string[] { e.Message }, "不是预定义的action"));
+				}
+
+			}
+
+			internal static void on_extension(XmlReader r, List<CompilerError> errors)
 			{
 
 			}

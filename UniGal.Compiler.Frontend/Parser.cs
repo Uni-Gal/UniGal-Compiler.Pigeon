@@ -15,12 +15,26 @@ namespace UniGal.Compiler.Frontend
 	/// </summary>
 	public class Parser
 	{
-		private readonly List<IR.CompilerError> errors = new(100);
+		private readonly List<IR.CompilerError> problems = new(100);
 		private readonly TextReader xml_stream;
 		/// <summary>
-		/// 获取错误列表
+		/// 获取问题列表
 		/// </summary>
-		public IEnumerable<IR.CompilerError> Errors => errors;
+		public IEnumerable<CompilerError> Problems => problems;
+		/// <summary>
+		/// 关键性错误
+		/// </summary>
+		public bool HasCriticialError
+		{
+			get
+			{
+				foreach (CompilerError e in problems)
+					if (e.Code.Serviety == ErrorServiety.CritialError)
+						return true;
+
+				return false;
+			}
+		}
 		/// <summary>
 		/// 解析前为null，解析失败值无意义
 		/// </summary>
@@ -58,7 +72,9 @@ namespace UniGal.Compiler.Frontend
 				if (r.ReadToFollowing("unigal"))
 				{
 					// 有效，开始解析
-					while (r.Read())
+					while (r.Read() &&
+						r.NodeType != XmlNodeType.EndElement &&
+						r.Name != "unigal") 
 					{
 						switch (r.NodeType)
 						{
@@ -68,34 +84,31 @@ namespace UniGal.Compiler.Frontend
 									switch (r.Name)
 									{
 										case "head":
-											md ??= responses.on_metadata(r, errors);
+											md ??= responses.on_metadata(r, problems);
 											break;
 										case "body":
-											body ??= responses.on_scriptbody(r, errors);
+											body ??= responses.on_scriptbody(r, problems);
 											break;
 										case "environment":
-											rtenv ??= responses.on_rtenv(r, errors);
+											rtenv ??= responses.on_rtenv(r, problems);
 											break;
 									}
 								}
 								break;
-							case XmlNodeType.EndElement:
-								goto stop_parse;
 							default:
 								continue;
 						}
 					}
-				stop_parse:
 					AST = new ScriptSyntaxTree(
-						md ?? throw new ParseException(),
-						body ?? throw new ParseException(),
+						md ?? throw new ParseException(new(3, ErrorServiety.CritialError, new string[] { "缺少元数据<head>" }, "文件不正确")),
+						body ?? throw new ParseException(new(3, ErrorServiety.CritialError, new string[] { "缺少主体数据<body>" }, "文件不正确")),
 						rtenv
 						);
 				}
 				else
 				{
 					// 无效，报错
-					errors.Add(new ParserError(3, ErrorServiety.CritialError, Array.Empty<string>(), "无效unigal文件"));
+					problems.Add(new ParserError(3, ErrorServiety.CritialError, Array.Empty<string>(), "无效unigal文件"));
 					return false;
 				}
 			}
@@ -104,14 +117,14 @@ namespace UniGal.Compiler.Frontend
 				var errobj = new ParserError(2, ErrorServiety.CritialError, new string[] {
 					"",
 					e.Message,
-					string.Format("第{0}行, {1}个字符", e.LineNumber.ToString(), e.LinePosition)
+					string.Format("第{0}行, {1}个字符", e.LineNumber.ToString(), e.LinePosition.ToString())
 				}, "XML文档有问题");
 
 				throw new ParseException(errobj, e);
 			}
 			catch (ParseException e)
 			{
-				errors.Add(e.)
+				problems.Add(e.ParserError);
 				return false;
 				throw;
 			}

@@ -40,7 +40,7 @@ namespace UniGal.Compiler.IR.Script.ScriptBody
 		/// <summary>
 		/// 创建Action代码元素
 		/// </summary>
-		public ActionRecord(string name, string inner)
+		protected ActionRecord(string name, string inner)
 		{
 			Name = name;
 			InnerText = inner;
