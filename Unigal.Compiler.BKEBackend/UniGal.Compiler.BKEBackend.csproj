@@ -4,7 +4,7 @@
 		<TargetFramework>net5.0</TargetFramework>
 		<Authors>Fa鸽</Authors>
 		<Company>UniGal Team</Company>
-		<PackageLicenseExpression>LGPL-2.1-only</PackageLicenseExpression>
+		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
