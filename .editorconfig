@@ -5,7 +5,6 @@ root = true
 [*.cs]
 
 #### Core EditorConfig 选项 ####
-charset = utf-8
 
 # 缩进和间距
 indent_size = 4
@@ -169,9 +168,13 @@ csharp_preserve_single_line_statements = true
 
 # 命名规则
 
-dotnet_naming_rule.assembly_internal_should_be_cpp_stdlib.severity = warning
-dotnet_naming_rule.assembly_internal_should_be_cpp_stdlib.symbols = assembly_internal
-dotnet_naming_rule.assembly_internal_should_be_cpp_stdlib.style = cpp_stdlib
+dotnet_naming_rule.internal_static_class_should_be_cpp.severity = suggestion
+dotnet_naming_rule.internal_static_class_should_be_cpp.symbols = internal_static_class
+dotnet_naming_rule.internal_static_class_should_be_cpp.style = cpp
+
+dotnet_naming_rule.private_or_internal_static_field_should_be_cpp.severity = suggestion
+dotnet_naming_rule.private_or_internal_static_field_should_be_cpp.symbols = private_or_internal_static_field
+dotnet_naming_rule.private_or_internal_static_field_should_be_cpp.style = cpp
 
 dotnet_naming_rule.interface_should_be_begins_with_i.severity = suggestion
 dotnet_naming_rule.interface_should_be_begins_with_i.symbols = interface
@@ -185,11 +188,19 @@ dotnet_naming_rule.non_field_members_should_be_pascal_case.severity = suggestion
 dotnet_naming_rule.non_field_members_should_be_pascal_case.symbols = non_field_members
 dotnet_naming_rule.non_field_members_should_be_pascal_case.style = pascal_case
 
+dotnet_naming_rule.assembly_public_api_should_be_pascal_case.severity = warning
+dotnet_naming_rule.assembly_public_api_should_be_pascal_case.symbols = assembly_public_api
+dotnet_naming_rule.assembly_public_api_should_be_pascal_case.style = pascal_case
+
 # 符号规范
 
 dotnet_naming_symbols.interface.applicable_kinds = interface
 dotnet_naming_symbols.interface.applicable_accessibilities = public, internal, private, protected, protected_internal, private_protected
 dotnet_naming_symbols.interface.required_modifiers = 
+
+dotnet_naming_symbols.private_or_internal_static_field.applicable_kinds = field
+dotnet_naming_symbols.private_or_internal_static_field.applicable_accessibilities = internal, private, private_protected
+dotnet_naming_symbols.private_or_internal_static_field.required_modifiers = static
 
 dotnet_naming_symbols.types.applicable_kinds = class, struct, interface, enum
 dotnet_naming_symbols.types.applicable_accessibilities = public, internal, private, protected, protected_internal, private_protected
@@ -199,9 +210,13 @@ dotnet_naming_symbols.non_field_members.applicable_kinds = property, event, meth
 dotnet_naming_symbols.non_field_members.applicable_accessibilities = public, internal, private, protected, protected_internal, private_protected
 dotnet_naming_symbols.non_field_members.required_modifiers = 
 
-dotnet_naming_symbols.assembly_internal.applicable_kinds = property, field, event, class, struct, interface, enum, delegate, method
-dotnet_naming_symbols.assembly_internal.applicable_accessibilities = internal, private, private_protected
-dotnet_naming_symbols.assembly_internal.required_modifiers = 
+dotnet_naming_symbols.internal_static_class.applicable_kinds = class
+dotnet_naming_symbols.internal_static_class.applicable_accessibilities = internal, private_protected
+dotnet_naming_symbols.internal_static_class.required_modifiers = static
+
+dotnet_naming_symbols.assembly_public_api.applicable_kinds = namespace, property, field, event, class, struct, interface, enum, delegate, method
+dotnet_naming_symbols.assembly_public_api.applicable_accessibilities = public, protected, protected_internal
+dotnet_naming_symbols.assembly_public_api.required_modifiers = 
 
 # 命名样式
 
@@ -215,13 +230,7 @@ dotnet_naming_style.begins_with_i.required_suffix =
 dotnet_naming_style.begins_with_i.word_separator = 
 dotnet_naming_style.begins_with_i.capitalization = pascal_case
 
-dotnet_naming_style.cpp_stdlib.required_prefix = 
-dotnet_naming_style.cpp_stdlib.required_suffix = 
-dotnet_naming_style.cpp_stdlib.word_separator = _
-dotnet_naming_style.cpp_stdlib.capitalization = all_lower
-
-[*.md]
-end_of_line = crlf
-charset = utf-8-bom
-indent_size = 2
-indent_style = space
+dotnet_naming_style.cpp.required_prefix = 
+dotnet_naming_style.cpp.required_suffix = 
+dotnet_naming_style.cpp.word_separator = _
+dotnet_naming_style.cpp.capitalization = all_lower
