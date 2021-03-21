@@ -1,7 +1,10 @@
-﻿using System;
-
+using System;
+#pragma warning disable CS1591
 namespace UniGal.Compiler.Backend
 {
+	/// <summary>
+	/// 用于标记一个后端程序集
+	/// </summary>
 	[AttributeUsage(AttributeTargets.Assembly, AllowMultiple = false)]
 	public class UniGalBackendAssemblyAttribute : Attribute
 	{
@@ -14,6 +17,9 @@ namespace UniGal.Compiler.Backend
 		}
 	}
 
+	/// <summary>
+	/// 用于标记一个后端工厂类
+	/// </summary>
 	[AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
 	public sealed class UniGalBackendFactoryAttribute : Attribute
 	{

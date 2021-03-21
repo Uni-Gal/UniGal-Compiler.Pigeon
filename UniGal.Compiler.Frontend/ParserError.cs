@@ -7,6 +7,9 @@ using UniGal.Compiler.IR;
 
 namespace UniGal.Compiler.Frontend
 {
+	/// <summary>
+	/// 
+	/// </summary>
 	public class ParserError : CompilerError
 	{
 

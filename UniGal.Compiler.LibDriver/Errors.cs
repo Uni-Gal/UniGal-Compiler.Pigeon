@@ -7,6 +7,9 @@ using UniGal.Compiler.IR;
 
 namespace UniGal.Compiler.LibDriver
 {
+	/// <summary>
+	/// 编译组织器发出的错误
+	/// </summary>
 	public class CompilerDriverError : CompilerError
 	{
 		internal static readonly ErrorCode ice_basic_errc = new() { NumericCode = 9001, Serviety = ErrorServiety.CritialError };
@@ -15,7 +18,7 @@ namespace UniGal.Compiler.LibDriver
 		{
 			Explaination = explain;
 		}
-		protected CompilerDriverError(ErrorCode errc, IEnumerable<string> msgs):
+		internal CompilerDriverError(ErrorCode errc, IEnumerable<string> msgs):
 			base(errc, msgs)
 		{
 			
@@ -27,7 +30,7 @@ namespace UniGal.Compiler.LibDriver
 		}
 	}
 
-	public class CannotLoadFactory : CompilerDriverError
+	internal class CannotLoadFactory : CompilerDriverError
 	{
 		public CannotLoadFactory(string backendName, string engine,IEnumerable<string> msgs):
 			base(new ErrorCode(9012, ErrorServiety.Warning), msgs)
@@ -36,7 +39,7 @@ namespace UniGal.Compiler.LibDriver
 		}
 	}
 
-	public class CannotLoadBackend : CompilerDriverError
+	internal class CannotLoadBackend : CompilerDriverError
 	{
 		public CannotLoadBackend(string filename, IEnumerable<string> msgs)
 			:base(new(9011 ,ErrorServiety.Warning), msgs)

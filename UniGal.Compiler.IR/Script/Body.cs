@@ -1,11 +1,8 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using UniGal.Compiler.IR.Script.ScriptBody;
 
+#pragma warning disable CS1591
 namespace UniGal.Compiler.IR.Script
 {
 	/// <summary>
@@ -15,5 +12,11 @@ namespace UniGal.Compiler.IR.Script
 	{
 		public IEnumerable<ScriptText> Texts;
 		public Codes Code;
+
+		public Body(IEnumerable<ScriptText> texts, Codes code)
+		{
+			Texts = texts;
+			Code = code;
+		}
 	}
 }

@@ -13,15 +13,19 @@ namespace UniGal.Compiler.IR.Script.ScriptBody
 	/// </summary>
 	public class Codes : BasicElement
 	{
+		/// <summary>音频资源</summary>
 		public readonly IEnumerable<Audio> Audios;
+		/// <summary>图像资源</summary>
 		public readonly IEnumerable<Image> Images;
-		public readonly IEnumerable<ActionRecord> Actions;
 
+		/// <summary>
+		/// 
+		/// </summary>
 		public Codes(IEnumerable<Audio> audios, IEnumerable<Image> imgs, IEnumerable<ActionRecord> actions)
 		{
 			Audios = audios;
 			Images = imgs;
-			Actions = actions;
+			// Actions = actions;
 		}
 	}
 }

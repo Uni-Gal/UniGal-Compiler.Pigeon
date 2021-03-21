@@ -19,13 +19,14 @@ namespace UniGal.Compiler.IR.Script
 			public uint Height;
 			/// <summary>是不是全屏显示</summary>
 			public bool FullScreen;
-
+#pragma warning disable CS1591
 			public Display(uint w, uint h, bool fullscreen)
 			{
 				Width = w;
 				Height = h;
 				FullScreen = fullscreen;
 			}
+#pragma warning restore
 		}
 		/// <summary>需要安装的再分发包</summary>
 		public record RedistPackage

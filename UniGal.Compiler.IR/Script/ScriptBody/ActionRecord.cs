@@ -5,7 +5,10 @@ using UniGal.Compiler.IR.Utilities;
 
 namespace UniGal.Compiler.IR.Script.ScriptBody
 {
-	public record ActionRecord
+	/// <summary>
+	/// 预定义Action
+	/// </summary>
+	public abstract record ActionRecord
 	{
 		/// <summary>
 		/// 不是无参数的Action就自己建一个数组

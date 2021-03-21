@@ -1,8 +1,11 @@
 using System.Collections.Generic;
 using UniGal.Compiler.IR;
-
+#pragma warning disable CS1591
 namespace UniGal.Compiler.Backend
 {
+	/// <summary>
+	/// 代表后端发出的编译器错误
+	/// </summary>
 	public class BackendError : CompilerError
 	{
 		protected BackendError(ErrorCode errc, IEnumerable<string> messages) : base(errc, messages)
