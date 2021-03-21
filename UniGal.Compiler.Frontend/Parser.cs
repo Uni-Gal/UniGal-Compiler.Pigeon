@@ -15,8 +15,10 @@ namespace UniGal.Compiler.Frontend
 	/// </summary>
 	public class Parser : IDisposable
 	{
-		private readonly List<IR.CompilerError> problems = new(100);
+		private bool is_disposed;
+		private readonly List<CompilerError> problems = new(100);
 		private readonly TextReader xml_stream;
+		private XmlReaderSettings reader_settings;
 		/// <summary>
 		/// 获取问题列表
 		/// </summary>
@@ -39,24 +41,28 @@ namespace UniGal.Compiler.Frontend
 		/// 解析前为null，解析失败值无意义
 		/// </summary>
 		public ScriptSyntaxTree? AST;
-		private bool is_disposed;
+
+		/// <summary>
+		/// 获取当前行号
+		/// </summary>
+		public int LineNumber { get => reader_settings.LineNumberOffset; }
 
 		/// <summary>
 		/// 创建解析器
 		/// </summary>
 		/// <param name="path">文件路径</param>
-		public Parser(string path)
+		public Parser(string path):this(File.OpenText(path))
 		{
-			xml_stream = File.OpenText(path);
 		}
 
 		/// <summary>
 		/// 创建解析器
 		/// </summary>
-		/// <param name="xmlStreamReader"></param>
+		/// <param name="xmlStreamReader">XML流</param>
 		public Parser(TextReader xmlStreamReader)
 		{
 			xml_stream = xmlStreamReader;
+			reader_settings = new();
 		}
 
 		/// <summary>
@@ -65,7 +71,24 @@ namespace UniGal.Compiler.Frontend
 		/// <returns>分析结果，成功为true</returns>
 		public bool Parse()
 		{
-			using XmlReader r = XmlReader.Create(xml_stream);
+			XmlReaderSettings rSettings = new()
+			{
+				// 非异步操作
+				Async = false,
+				// 不自动关闭
+				CloseInput = false,
+				// 忽略不必要的元素
+				IgnoreComments = true,
+				IgnoreWhitespace = true,
+				// 关闭验证
+				DtdProcessing = DtdProcessing.Ignore,
+				ValidationType = ValidationType.None,
+				CheckCharacters = false,
+				MaxCharactersFromEntities = 2048L
+			};
+			reader_settings = rSettings;
+
+			using XmlReader r = XmlReader.Create(xml_stream, rSettings);
 			Metadata? md = null;
 			EnvironmentInfo? rtenv = null;
 			Body? body = null;
@@ -137,9 +160,9 @@ namespace UniGal.Compiler.Frontend
 		/// 异步进行分析
 		/// </summary>
 		/// <returns>分析结果，成功为true</returns>
-		public Task<bool> ParseAsync()
+		public async Task<bool> ParseAsync()
 		{
-			return Task.Run(Parse);
+			return await Task.Run(Parse);
 		}
 
 #pragma warning disable CS1591 // Dispose不用写了，懂得都懂
