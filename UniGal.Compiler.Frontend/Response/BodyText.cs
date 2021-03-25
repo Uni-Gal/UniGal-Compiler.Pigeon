@@ -8,10 +8,10 @@ using UniGal.Compiler.IR.Script.ScriptBody;
 
 namespace UniGal.Compiler.Frontend
 {
-	internal partial class responses
+	internal partial class Responses
 	{
 		// 体量原因，特别放出来
-		internal static class body_text
+		internal static class BodyText
 		{
 			internal static ScriptText on_text(XmlReader r, List<CompilerError> errors)
 			{

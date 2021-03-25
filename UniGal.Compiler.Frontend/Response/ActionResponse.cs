@@ -34,9 +34,9 @@ namespace UniGal.Compiler.Frontend
 		}
 	}
 
-	internal partial class responses
+	internal partial class Responses
 	{
-		internal static class action
+		internal static class ActionResponse
 		{
 			internal static void on_action(XmlReader r, List<CompilerError> errors)
 			{

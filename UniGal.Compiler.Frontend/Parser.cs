@@ -109,13 +109,13 @@ namespace UniGal.Compiler.Frontend
 									switch (r.Name)
 									{
 										case "head":
-											md ??= responses.on_metadata(r, problems);
+											md ??= Responses.on_metadata(r, problems);
 											break;
 										case "body":
-											body ??= responses.on_scriptbody(r, problems);
+											body ??= Responses.on_scriptbody(r, problems);
 											break;
 										case "environment":
-											rtenv ??= responses.on_rtenv(r, problems);
+											rtenv ??= Responses.on_rtenv(r, problems);
 											break;
 									}
 								}

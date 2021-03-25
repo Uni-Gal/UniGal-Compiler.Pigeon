@@ -6,9 +6,9 @@ using UniGal.Compiler.IR.Script.Resource;
 
 namespace UniGal.Compiler.Frontend
 {
-	internal partial class responses
+	internal partial class Responses
 	{
-		internal static class body_code
+		internal static class BodyCode
 		{
 			internal static Codes on_code(XmlReader r, List<CompilerError> errors)
 			{
@@ -26,15 +26,15 @@ namespace UniGal.Compiler.Frontend
 							switch (r.Value)
 							{
 								case "resource":
-									switch (res.check_asset(r, errors))
+									switch (Resource.check_asset(r, errors))
 									{
 										case asset_type.not_asset:
 											goto stop_parse1;
 										case asset_type.audio:
-											audios.Add(res.on_audio(r, errors));
+											audios.Add(Resource.on_audio(r, errors));
 											break;
 										case asset_type.image:
-											images.Add(res.on_image(r, errors));
+											images.Add(Resource.on_image(r, errors));
 											break;
 										default:
 											goto stop_parse1;

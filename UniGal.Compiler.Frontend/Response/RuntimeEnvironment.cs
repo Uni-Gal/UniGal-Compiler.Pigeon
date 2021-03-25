@@ -9,9 +9,9 @@ using UniGal.Compiler.IR.Script;
 
 namespace UniGal.Compiler.Frontend
 {
-	internal partial class responses
+	internal partial class Responses
 	{
-		internal class rtenv
+		internal class RuntimeEnvironment
 		{
 			internal static List<EnvironmentInfo.RedistPackage> on_redist(XmlReader r, List<CompilerError> errors)
 			{

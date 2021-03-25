@@ -12,7 +12,7 @@ using UniGal.Compiler.IR.Script.Resource;
 
 namespace UniGal.Compiler.Frontend
 {
-	internal partial class responses
+	internal partial class Responses
 	{
 		// 可视化设计器的注释
 		internal static string on_comment(XmlReader r)
@@ -98,10 +98,10 @@ namespace UniGal.Compiler.Frontend
 						switch (r.Name)
 						{
 							case "redists":
-								redists = rtenv.on_redist(r, errors);
+								redists = RuntimeEnvironment.on_redist(r, errors);
 								break;
 							case "display":
-								dispProp = rtenv.on_display(r, errors);
+								dispProp = RuntimeEnvironment.on_display(r, errors);
 								break;
 							default:
 								break;
@@ -128,10 +128,10 @@ namespace UniGal.Compiler.Frontend
 					switch (r.Value)
 					{
 						case "code":
-							code = body_code.on_code(r, errors);
+							code = BodyCode.on_code(r, errors);
 							break;
 						case "text":
-							texts.Add(body_text.on_text(r, errors));
+							texts.Add(BodyText.on_text(r, errors));
 							break;
 						case "comment":
 							comment = on_comment(r);

@@ -14,9 +14,9 @@ namespace UniGal.Compiler.Frontend
 		image
 	}
 
-	internal partial class responses
+	internal partial class Responses
 	{
-		internal static class res
+		internal static class Resource
 		{
 			// 因为检查不严格，所以unsafe
 			private static FileSystemPath make_fspath_unsafe(string pathStr)
