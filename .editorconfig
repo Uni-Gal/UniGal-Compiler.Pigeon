@@ -1,10 +1,17 @@
 # 如果要从更高级别的目录继承 .editorconfig 设置，请删除以下行
 root = true
 
+# Markdown
+[*.md]
+charset = utf-8-bom
+end_of_line = crlf
+tab_width = 4
+
 # c# 文件
 [*.cs]
 
 #### Core EditorConfig 选项 ####
+charset = utf-8
 
 # 缩进和间距
 indent_size = 4
@@ -168,9 +175,9 @@ csharp_preserve_single_line_statements = true
 
 # 命名规则
 
-dotnet_naming_rule.internal_static_class_should_be_cpp.severity = suggestion
-dotnet_naming_rule.internal_static_class_should_be_cpp.symbols = internal_static_class
-dotnet_naming_rule.internal_static_class_should_be_cpp.style = cpp
+dotnet_naming_rule.internal_members_should_be_cpp.severity = suggestion
+dotnet_naming_rule.internal_members_should_be_cpp.symbols = internal_members
+dotnet_naming_rule.internal_members_should_be_cpp.style = cpp
 
 dotnet_naming_rule.private_or_internal_static_field_should_be_cpp.severity = suggestion
 dotnet_naming_rule.private_or_internal_static_field_should_be_cpp.symbols = private_or_internal_static_field
@@ -210,9 +217,9 @@ dotnet_naming_symbols.non_field_members.applicable_kinds = property, event, meth
 dotnet_naming_symbols.non_field_members.applicable_accessibilities = public, internal, private, protected, protected_internal, private_protected
 dotnet_naming_symbols.non_field_members.required_modifiers = 
 
-dotnet_naming_symbols.internal_static_class.applicable_kinds = class
-dotnet_naming_symbols.internal_static_class.applicable_accessibilities = internal, private_protected
-dotnet_naming_symbols.internal_static_class.required_modifiers = static
+dotnet_naming_symbols.internal_members.applicable_kinds = field, method
+dotnet_naming_symbols.internal_members.applicable_accessibilities = internal, private, private_protected
+dotnet_naming_symbols.internal_members.required_modifiers = 
 
 dotnet_naming_symbols.assembly_public_api.applicable_kinds = namespace, property, field, event, class, struct, interface, enum, delegate, method
 dotnet_naming_symbols.assembly_public_api.applicable_accessibilities = public, protected, protected_internal
