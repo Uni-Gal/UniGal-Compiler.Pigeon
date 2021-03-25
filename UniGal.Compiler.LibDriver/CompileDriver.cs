@@ -17,7 +17,7 @@ namespace UniGal.Compiler.LibDriver
 	{
 		private readonly CompileOptions opt;
 		private readonly List<CompilerError> errors;
-		private readonly List<backend_record> backends;
+		private readonly List<BackendRecord> backends;
 		
 		/// <summary>
 		/// 生成输出目录
@@ -32,6 +32,10 @@ namespace UniGal.Compiler.LibDriver
 		/// </summary>
 		public IEnumerable<CompilerError> Errors => errors;
 		/// <summary>
+		/// 
+		/// </summary>
+		public IReadOnlyList<BackendRecord> LoadedBackends { get => backends; }
+		/// <summary>
 		/// 创建Driver
 		/// </summary>
 		/// <param name="options">编译选项</param>
@@ -43,7 +47,7 @@ namespace UniGal.Compiler.LibDriver
 			backends = new(8);
 		}
 
-		internal partial backend_record sel_factory(string engine, string name, string language, string? version);
+		internal partial BackendRecord SelectFactory(string engine, string name, string language, string? version);
 		/// <summary>
 		/// 加载后端
 		/// </summary>
