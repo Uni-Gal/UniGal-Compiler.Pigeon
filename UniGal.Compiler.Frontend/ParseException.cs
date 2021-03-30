@@ -18,7 +18,7 @@ namespace UniGal.Compiler.Frontend
 			get
 			{
 				ParserError? val = (ParserError?)Data[data_site + "errobj"];
-				return util.assert_notnull(val);
+				return Util.assert_notnull(val);
 			}
 			private set => Data[data_site + "errobj"] = value;
 		}

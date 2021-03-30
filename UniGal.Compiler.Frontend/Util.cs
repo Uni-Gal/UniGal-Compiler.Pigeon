@@ -4,7 +4,7 @@ using System;
 
 namespace UniGal.Compiler.Frontend
 {
-	internal static class util
+	internal static class Util
 	{
 		[return: NotNull]
 		internal static T assert_notnull<T>(T? val)

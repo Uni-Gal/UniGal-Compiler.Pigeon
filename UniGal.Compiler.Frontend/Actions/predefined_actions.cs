@@ -29,10 +29,10 @@ namespace UniGal.Compiler.Frontend.Actions
 
 			Dictionary<string, ActionParseHandler> ret = new(16);
 
-			ret.Add("save_auto", predefined_handlers.argless);
-			ret.Add("newline", predefined_handlers.argless);
-			ret.Add("waitclick", predefined_handlers.argless);
-			ret.Add("clear_text", predefined_handlers.argless);
+			ret.Add("save_auto", PredefinedHandlers.argless);
+			ret.Add("newline", PredefinedHandlers.argless);
+			ret.Add("waitclick", PredefinedHandlers.argless);
+			ret.Add("clear_text", PredefinedHandlers.argless);
 			// TODO: 还差很多可以加的东西
 
 			predefined = ret;
@@ -40,7 +40,7 @@ namespace UniGal.Compiler.Frontend.Actions
 		}
 	}
 
-	internal static class predefined_handlers
+	internal static class PredefinedHandlers
 	{
 		private record argless_action : ActionRecord
 		{
