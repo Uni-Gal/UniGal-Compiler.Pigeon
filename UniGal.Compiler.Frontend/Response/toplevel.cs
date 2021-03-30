@@ -142,11 +142,11 @@ namespace UniGal.Compiler.Frontend
 				}
 			}
 
-			Body ret = new()
-			{
-				Code = code ?? new Codes(Array.Empty<Audio>(), Array.Empty<Image>(), Array.Empty<IR.Script.ScriptBody.ActionRecord>()),
-				Texts = texts,
-			};
+			Body ret = new(
+				texts,
+				code ??
+					new Codes(Array.Empty<Audio>(), Array.Empty<Image>(), Array.Empty<IR.Script.ScriptBody.ActionRecord>())
+				);
 			ret.Comment = comment ?? "";
 			return ret;
 		}
