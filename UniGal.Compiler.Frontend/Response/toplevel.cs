@@ -27,7 +27,8 @@ namespace UniGal.Compiler.Frontend
 			{
 				if (r.NodeType == XmlNodeType.Element)
 				{
-					while (r.Read() && r.NodeType != XmlNodeType.EndElement)
+					string stored_name = r.Name;
+					while (r.Read() && r.NodeType != XmlNodeType.EndElement && r.Name != stored_name)
 					{
 						if (r.NodeType == XmlNodeType.Element)
 						{
