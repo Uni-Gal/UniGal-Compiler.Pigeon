@@ -1,9 +1,6 @@
-using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
+using System;
 
 namespace UniGal.Compiler.Frontend
 {
@@ -14,9 +11,10 @@ namespace UniGal.Compiler.Frontend
 		{
 			if (val == null)
 			{
-				System.Diagnostics.Debug.Fail("Assertion failure, a non nullable value is null.");
+				Debug.Fail("A non nullable assigned a null value");
+				throw new ArgumentNullException(nameof(val), "A non nullable assigned a null value");
 			}
-			return val!;
+			return val;
 		}
 
 	}
