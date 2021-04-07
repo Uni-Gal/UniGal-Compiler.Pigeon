@@ -19,18 +19,12 @@ namespace UniGal.Compiler.Frontend
 		/// </summary>
 		public string InnerText;
 		/// <summary>
-		/// XML属性形式参数的列表
-		/// </summary>
-		public IReadOnlyDictionary<string, string> Args;
-
-		/// <summary>
 		/// 
 		/// </summary>
-		public ExtensionRecord(string name, string inner, IReadOnlyDictionary<string, string> args)
+		public ExtensionRecord(string name, string inner)
 		{
 			Name = name;
 			InnerText = inner;
-			Args = args;
 		}
 	}
 
@@ -63,9 +57,33 @@ namespace UniGal.Compiler.Frontend
 
 			}
 
-			internal static void on_extension(XmlReader r, List<CompilerError> errors)
+			internal static ExtensionRecord on_extension(XmlReader r, List<CompilerError> errors)
 			{
+				string? extname = null;
 
+				if (!r.MoveToFirstAttribute())
+				{
+					throw new ParseException(
+					  new ParserError(3, ErrorServiety.CritialError, Array.Empty<string>(), "extension缺少name"));
+				}
+
+				do
+				{
+					if (r.Name == "name")
+					{
+						extname = r.Value;
+						break;
+					}
+				} while (r.ReadAttributeValue());
+
+				_ = extname ?? throw new ParseException(
+					new ParserError(3, ErrorServiety.CritialError, Array.Empty<string>(), "extension缺少name"
+					));
+
+				ExtensionRecord ret = new(extname, r.ReadInnerXml());
+
+				r.ReadEndElement();
+				return ret;
 			}
 		}
 	}

@@ -71,24 +71,18 @@ namespace UniGal.Compiler.Frontend
 		/// <returns>分析结果，成功为true</returns>
 		public bool Parse()
 		{
-			XmlReaderSettings rSettings = new()
+			using XmlReader r = XmlReader.Create(xml_stream);
+			XmlReaderSettings? rsettings = r.Settings;
+			if (rsettings != null)
 			{
-				// 非异步操作
-				Async = false,
-				// 不自动关闭
-				CloseInput = false,
-				// 忽略不必要的元素
-				IgnoreComments = true,
-				IgnoreWhitespace = true,
-				// 关闭验证
-				DtdProcessing = DtdProcessing.Ignore,
-				ValidationType = ValidationType.None,
-				CheckCharacters = false,
-				MaxCharactersFromEntities = 2048L
-			};
-			reader_settings = rSettings;
+				rsettings.Async = false;
+				rsettings.CloseInput = false;
 
-			using XmlReader r = XmlReader.Create(xml_stream, rSettings);
+				rsettings.IgnoreComments = true;
+				rsettings.IgnoreWhitespace = true;
+			}
+			reader_settings = r.Settings ?? new();
+
 			Metadata? md = null;
 			EnvironmentInfo? rtenv = null;
 			Body? body = null;
