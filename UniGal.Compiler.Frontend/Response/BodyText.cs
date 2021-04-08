@@ -98,7 +98,7 @@ namespace UniGal.Compiler.Frontend
 											}
 										}
 
-										pages.Add(new(paras));
+										pages.Add(new(paras, character, label));
 									}
 								}
 								break;

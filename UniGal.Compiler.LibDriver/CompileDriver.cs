@@ -47,7 +47,7 @@ namespace UniGal.Compiler.LibDriver
 			backends = new(8);
 		}
 
-		internal partial BackendRecord SelectFactory(string engine, string name, string language, string? version);
+		internal partial BackendRecord select_factory(string engine, string name, string language, string? version);
 		/// <summary>
 		/// 加载后端
 		/// </summary>

@@ -13,11 +13,11 @@ namespace UniGal.Compiler.IR.Script.ScriptBody
 		/// <summary>
 		/// 不是无参数的Action就自己建一个数组
 		/// </summary>
-		protected KeyValuePair<string, string>[] ArgsImpl = Array.Empty<KeyValuePair<string, string>>();
+		protected KeyValuePair<string, string>[] argsImpl = Array.Empty<KeyValuePair<string, string>>();
 		/// <summary>
 		/// 附带参数列表
 		/// </summary>
-		public IReadOnlyList<KeyValuePair<string, string>> Args { get => ArgsImpl; }
+		public IReadOnlyList<KeyValuePair<string, string>> Args { get => argsImpl; }
 		/// <summary>
 		/// Action名称
 		/// </summary>
@@ -33,7 +33,7 @@ namespace UniGal.Compiler.IR.Script.ScriptBody
 		/// <returns></returns>
 		public string FindArg(string argname)
 		{
-			foreach (var arg in ArgsImpl)
+			foreach (var arg in argsImpl)
 				if (arg.Key == argname)
 					return arg.Value;
 

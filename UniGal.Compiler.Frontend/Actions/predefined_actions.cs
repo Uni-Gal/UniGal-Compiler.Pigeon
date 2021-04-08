@@ -42,10 +42,10 @@ namespace UniGal.Compiler.Frontend.Actions
 
 	internal static class PredefinedHandlers
 	{
-		private record argless_action : ActionRecord
+		private record ArglessAction : ActionRecord
 		{
 
-			public argless_action(string name, string inner):base(name, inner)
+			public ArglessAction(string name, string inner):base(name, inner)
 			{
 
 			}
@@ -53,7 +53,7 @@ namespace UniGal.Compiler.Frontend.Actions
 
 		internal static ActionRecord argless(string name,IReadOnlyDictionary<string, string> args, string inner)
 		{
-			return new argless_action(name, inner);
+			return new ArglessAction(name, inner);
 		}
 	}
 }

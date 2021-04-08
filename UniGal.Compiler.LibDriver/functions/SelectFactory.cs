@@ -38,7 +38,7 @@ namespace UniGal.Compiler.LibDriver
 
 	sealed partial class CompileDriver
 	{
-		internal partial BackendRecord SelectFactory(string engine, string name, string language, string? version)
+		internal partial BackendRecord select_factory(string engine, string name, string language, string? version)
 		{
 			foreach (BackendRecord rec in backends)
 			{

@@ -7,7 +7,7 @@ using UniGal.Compiler.IR.Script.Resource;
 
 namespace UniGal.Compiler.Frontend
 {
-	internal enum asset_type
+	internal enum AssetType
 	{
 		not_asset = 0,
 		audio,
@@ -53,20 +53,20 @@ namespace UniGal.Compiler.Frontend
 					return new FileSystemPath(pathStr);
 				}
 			}
-			internal static asset_type check_asset(XmlReader r, List<CompilerError> errors)
+			internal static AssetType check_asset(XmlReader r, List<CompilerError> errors)
 			{
 				if(r.MoveToAttribute("type"))
 				{
 					return r.Value switch
 					{
-						"audio" => asset_type.audio,
-						"image" => asset_type.image,
-						_ => asset_type.not_asset,
+						"audio" => AssetType.audio,
+						"image" => AssetType.image,
+						_ => AssetType.not_asset,
 					};
 				}
 				else
 				{
-					return asset_type.not_asset;
+					return AssetType.not_asset;
 				}
 			}
 

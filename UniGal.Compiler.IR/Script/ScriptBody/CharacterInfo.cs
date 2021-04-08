@@ -22,7 +22,7 @@ namespace UniGal.Compiler.IR.Script.ScriptBody
 		/// <summary>
 		/// 读音标注
 		/// </summary>
-		public StringView Ruby = StringView.Empty;
+		public string Ruby = string.Empty;
 		/// <summary>
 		/// 文字风格（斜体、加粗等）
 		/// </summary>

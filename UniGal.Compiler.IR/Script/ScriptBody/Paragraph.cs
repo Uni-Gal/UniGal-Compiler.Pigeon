@@ -18,6 +18,6 @@ namespace UniGal.Compiler.IR.Script.ScriptBody
 		/// <remarks>
 		/// 若该段落是复合式的，Content字段将包含起止XML标记在内
 		/// </remarks>
-		public readonly StringView Content;
+		public readonly string Content = string.Empty;
 	}
 }

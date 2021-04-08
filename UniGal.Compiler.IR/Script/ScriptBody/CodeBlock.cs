@@ -1,4 +1,3 @@
-#pragma warning disable CS1591
 using UniGal.Compiler.IR.Utilities;
 
 namespace UniGal.Compiler.IR.Script.ScriptBody
@@ -9,6 +8,6 @@ namespace UniGal.Compiler.IR.Script.ScriptBody
 	public record CodeBlock(
 		string Engine,
 		string Language,
-		StringView Content
+		string Content
 		);
 }

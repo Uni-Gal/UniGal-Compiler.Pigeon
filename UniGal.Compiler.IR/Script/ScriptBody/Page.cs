@@ -24,10 +24,12 @@ namespace UniGal.Compiler.IR.Script.ScriptBody
 		/// </summary>
 		/// <param name="paras">段落的集合</param>
 		/// <param name="character">可选</param>
-		public Page(IEnumerable<Paragraph> paras, CharacterInfo? character = null)
+		/// <param name="label">跳转标签</param>
+		public Page(IEnumerable<Paragraph> paras, CharacterInfo? character = null, string? label = null)
 		{
 			Paragraphies = paras;
 			Character = character;
+			Label = label;
 		}
 	}
 }

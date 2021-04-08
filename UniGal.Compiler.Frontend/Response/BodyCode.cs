@@ -28,12 +28,12 @@ namespace UniGal.Compiler.Frontend
 								case "resource":
 									switch (Resource.check_asset(r, errors))
 									{
-										case asset_type.not_asset:
+										case AssetType.not_asset:
 											goto stop_parse1;
-										case asset_type.audio:
+										case AssetType.audio:
 											audios.Add(Resource.on_audio(r, errors));
 											break;
-										case asset_type.image:
+										case AssetType.image:
 											images.Add(Resource.on_image(r, errors));
 											break;
 										default:

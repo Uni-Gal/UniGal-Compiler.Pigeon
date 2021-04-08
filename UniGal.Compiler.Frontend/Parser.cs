@@ -16,6 +16,7 @@ namespace UniGal.Compiler.Frontend
 	public class Parser : IDisposable
 	{
 		private bool is_disposed;
+		private bool cached_error;
 		private readonly List<CompilerError> problems = new(100);
 		private readonly TextReader xml_stream;
 		private XmlReaderSettings reader_settings;
@@ -30,9 +31,12 @@ namespace UniGal.Compiler.Frontend
 		{
 			get
 			{
+				if (cached_error == true)
+					return true;
+
 				foreach (CompilerError e in problems)
 					if (e.Code.Serviety == ErrorServiety.CritialError)
-						return true;
+						return cached_error = true;
 
 				return false;
 			}
