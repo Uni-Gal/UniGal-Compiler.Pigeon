@@ -6,7 +6,7 @@ namespace UniGal.Compiler.IR
 	/// <summary>
 	/// 语法树
 	/// </summary>
-	public class ScriptSyntaxTree
+	public class ScriptDom
 	{
 		/// <summary>
 		/// 元数据
@@ -24,7 +24,7 @@ namespace UniGal.Compiler.IR
 		/// <summary>
 		/// ctor
 		/// </summary>
-		public ScriptSyntaxTree(Metadata md, Body body, EnvironmentInfo? env)
+		public ScriptDom(Metadata md, Body body, EnvironmentInfo? env)
 		{
 			Metadata = md;
 			Body = body;
@@ -33,6 +33,6 @@ namespace UniGal.Compiler.IR
 		/// <summary>
 		/// ctor
 		/// </summary>
-		public ScriptSyntaxTree(Metadata md, Body body):this(md, body, null) { }
+		public ScriptDom(Metadata md, Body body):this(md, body, null) { }
 	}
 }

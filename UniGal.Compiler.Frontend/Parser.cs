@@ -44,7 +44,7 @@ namespace UniGal.Compiler.Frontend
 		/// <summary>
 		/// 解析前为null，解析失败值无意义
 		/// </summary>
-		public ScriptSyntaxTree? AST;
+		public ScriptDom? AST;
 
 		/// <summary>
 		/// 获取当前行号
@@ -122,7 +122,7 @@ namespace UniGal.Compiler.Frontend
 								continue;
 						}
 					}
-					AST = new ScriptSyntaxTree(
+					AST = new ScriptDom(
 						md ?? throw new ParseException(new(3, ErrorServiety.CritialError, new string[] { "缺少元数据<head>" }, "文件不正确")),
 						body ?? throw new ParseException(new(3, ErrorServiety.CritialError, new string[] { "缺少主体数据<body>" }, "文件不正确")),
 						rtenv

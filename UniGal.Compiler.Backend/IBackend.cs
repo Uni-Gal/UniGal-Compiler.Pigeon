@@ -36,6 +36,6 @@ namespace UniGal.Compiler.Backend
 		/// 编译
 		/// </summary>
 		/// <param name="ast"></param>
-		public void Compile(ScriptSyntaxTree ast);
+		public void Compile(ScriptDom dom);
 	}
 }
