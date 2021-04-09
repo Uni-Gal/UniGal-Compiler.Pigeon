@@ -82,7 +82,6 @@ namespace UniGal.Compiler.Frontend
 
 				ExtensionRecord ret = new(extname, r.ReadInnerXml());
 
-				r.ReadEndElement();
 				return ret;
 			}
 		}

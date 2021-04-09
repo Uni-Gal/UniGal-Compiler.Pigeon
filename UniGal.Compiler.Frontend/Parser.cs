@@ -142,14 +142,13 @@ namespace UniGal.Compiler.Frontend
 					e.Message,
 					string.Format("第{0}行, {1}个字符", e.LineNumber.ToString(), e.LinePosition.ToString())
 				}, "XML文档有问题");
-
-				throw new ParseException(errobj, e);
+				problems.Add(errobj);
+				return false;
 			}
 			catch (ParseException e)
 			{
 				problems.Add(e.ParserError);
 				return false;
-				throw;
 			}
 			return true;
 		}
