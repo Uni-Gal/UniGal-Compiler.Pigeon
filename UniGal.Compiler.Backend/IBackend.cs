@@ -27,6 +27,19 @@ namespace UniGal.Compiler.Backend
 		/// </summary>
 		public IEnumerable<CompilerError> Errors { get; }
 		/// <summary>
+		/// 是否出现了致命性错误
+		/// </summary>
+		public bool HasCriticialError {
+			get
+			{
+				foreach (CompilerError e in Errors)
+					if (e.Code.Serviety == ErrorServiety.CritialError)
+						return true;
+
+				return false;
+			}
+		}
+		/// <summary>
 		/// 运行时的一些属性
 		/// </summary>
 		/// <remarks>值为null时，忽略</remarks>
@@ -35,7 +48,7 @@ namespace UniGal.Compiler.Backend
 		/// <summary>
 		/// 编译
 		/// </summary>
-		/// <param name="ast"></param>
+		/// <param name="dom"></param>
 		public void Compile(ScriptDom dom);
 	}
 }

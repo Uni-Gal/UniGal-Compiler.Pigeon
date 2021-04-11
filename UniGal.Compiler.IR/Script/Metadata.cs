@@ -8,11 +8,6 @@ namespace UniGal.Compiler.IR.Script
 	/// </summary>
 	public class Metadata : BasicElement
 	{
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员的 XML 注释
-		public string Source = string.Empty;
-		public string Target = string.Empty;
-#pragma warning restore CS1591 // 暂时不知道干嘛用的
-
 		/// <summary>源引擎</summary>
 		public string SourceEngine = string.Empty;
 		/// <summary>目标引擎</summary>

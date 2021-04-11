@@ -21,14 +21,18 @@ namespace UniGal.Compiler.LibDriver
 		/// <summary>
 		/// 后端名称
 		/// </summary>
-		public string BackendName { get; set; } = "";
+		public string? BackendName { get; set; } = null;
+		/// <summary>
+		/// 版本
+		/// </summary>
+		public string? BackendVersion { get; set; } = null;
 		/// <summary>
 		/// 目标语言
 		/// </summary>
-		public string TargetLanguage { get; set; } = "";
+		public string? TargetLanguage { get; set; } = null;
 		/// <summary>
 		/// 目标引擎
 		/// </summary>
-		public string TargetEngine { get; set; } = "";
+		public string? TargetEngine { get; set; } = null;
 	}
 }

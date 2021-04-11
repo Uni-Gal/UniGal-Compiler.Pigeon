@@ -11,6 +11,7 @@ namespace UniGal.Compiler.Backend
 	/// <remarks>最终的工厂不能是泛型类</remarks>
 	public abstract class BackendFactory : IBackendFactory
 	{
+		/// <summary>默认的SupportedLanguages实现</summary>
 		protected string[] supportedLanguages = Array.Empty<string>();
 
 		/// <summary>
@@ -18,24 +19,14 @@ namespace UniGal.Compiler.Backend
 		/// </summary>
 		protected BackendFactory() { }
 
-		/// <summary>
-		/// 创建一个编译后端
-		/// </summary>
-		/// <param name="outdir">输出目录</param>
-		/// <param name="targetLanguage">目标语言</param>
-		/// <returns>后端</returns>
-		/// <exception cref="InvalidOperationException">在不允许同时存在多个后端的情况下，尝试创建第二个后端</exception>
-		public abstract IBackend CreateBackend(DirectoryInfo outdir, string targetLanguage);
+		/// <inheritdoc/>
+		public abstract IBackend CreateBackend(DirectoryInfo outdir, string? targetLanguage);
 
 
-		/// <summary>
-		/// 获取该后端工厂支持的语言列表
-		/// </summary>
+		/// <inheritdoc/>
 		public virtual IEnumerable<string> SupportedLanguages => supportedLanguages;
 
-		/// <summary>
-		/// 此值指示是否允许同时存在多个后端实例
-		/// </summary>
+		/// <inheritdoc/>
 		public virtual bool AllowMultipleInstance => true;
 	}
 }

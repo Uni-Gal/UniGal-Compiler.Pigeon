@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -44,7 +45,7 @@ namespace UniGal.Compiler.Frontend
 		/// <summary>
 		/// 解析前为null，解析失败值无意义
 		/// </summary>
-		public ScriptDom? AST;
+		public ScriptDom? Dom { get; private set; }
 
 		/// <summary>
 		/// 获取当前行号
@@ -73,6 +74,7 @@ namespace UniGal.Compiler.Frontend
 		/// 同步进行分析
 		/// </summary>
 		/// <returns>分析结果，成功为true</returns>
+		[MemberNotNullWhen(true, "Dom")]
 		public bool Parse()
 		{
 			using XmlReader r = XmlReader.Create(xml_stream);
@@ -122,7 +124,7 @@ namespace UniGal.Compiler.Frontend
 								continue;
 						}
 					}
-					AST = new ScriptDom(
+					Dom = new ScriptDom(
 						md ?? throw new ParseException(new(3, ErrorServiety.CritialError, new string[] { "缺少元数据<head>" }, "文件不正确")),
 						body ?? throw new ParseException(new(3, ErrorServiety.CritialError, new string[] { "缺少主体数据<body>" }, "文件不正确")),
 						rtenv

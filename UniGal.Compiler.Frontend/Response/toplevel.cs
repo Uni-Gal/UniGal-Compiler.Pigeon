@@ -36,12 +36,6 @@ namespace UniGal.Compiler.Frontend
 							{
 								switch (r.Name)
 								{
-									case "src":
-										ret.Source = r.Value;
-										break;
-									case "dst":
-										ret.Target = r.Value;
-										break;
 									case "src_engine":
 										ret.SourceEngine = r.Value;
 										break;

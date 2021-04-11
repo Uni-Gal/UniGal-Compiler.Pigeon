@@ -20,9 +20,9 @@ namespace UniGal.Compiler.Backend
 		/// 创建一个编译后端
 		/// </summary>
 		/// <param name="outdir">输出目录</param>
-		/// <param name="targetLanguage">目标语言</param>
+		/// <param name="targetLanguage">目标语言，为null时选择支持列表的第一个</param>
 		/// <returns>后端</returns>
 		/// <exception cref="System.InvalidOperationException">在不允许同时存在多个后端的情况下，尝试创建第二个后端</exception>
-		IBackend CreateBackend(DirectoryInfo outdir, string targetLanguage);
+		IBackend CreateBackend(DirectoryInfo outdir, string? targetLanguage);
 	}
 }
