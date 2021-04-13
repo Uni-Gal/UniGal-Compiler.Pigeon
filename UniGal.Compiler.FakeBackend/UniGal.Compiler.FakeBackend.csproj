@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\UniGal.Compiler.Backend\UniGal.Compiler.Backend.csproj" />
+    <ProjectReference Include="..\UniGal.Compiler.IR\UniGal.Compiler.IR.csproj" />
+  </ItemGroup>
+
+</Project>

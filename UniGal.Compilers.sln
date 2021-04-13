@@ -24,6 +24,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Github", "Github", "{8BCFA5
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniGal.Compiler.LibDriver", "UniGal.Compiler.LibDriver\UniGal.Compiler.LibDriver.csproj", "{3ACEB10A-A9AE-4FBB-80DE-37C428715CB1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniGal.Compiler.FakeBackend", "UniGal.Compiler.FakeBackend\UniGal.Compiler.FakeBackend.csproj", "{A5BD98EB-9F0A-43CA-9DEE-ABB077D446A7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "共用文件", "共用文件", "{DB6D53B3-AA9E-4FA6-A766-DD1F5B77C905}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,6 +61,10 @@ Global
 		{3ACEB10A-A9AE-4FBB-80DE-37C428715CB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3ACEB10A-A9AE-4FBB-80DE-37C428715CB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3ACEB10A-A9AE-4FBB-80DE-37C428715CB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5BD98EB-9F0A-43CA-9DEE-ABB077D446A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5BD98EB-9F0A-43CA-9DEE-ABB077D446A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5BD98EB-9F0A-43CA-9DEE-ABB077D446A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5BD98EB-9F0A-43CA-9DEE-ABB077D446A7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
