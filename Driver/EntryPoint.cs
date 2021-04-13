@@ -29,8 +29,15 @@ namespace UniGal.Compiler.Driver
 
 			CompileDriver driver = new(options);
 			driver.OnErrorsAdded += driver_onerrorsadded;
-			driver.BeginCompile();
 
+			try
+			{
+				driver.BeginCompile();
+			}
+			catch (FileNotFoundException e)
+			{
+				Console.WriteLine("找不到文件" + e.FileName);
+			}
 		}
 
 		private static void driver_onerrorsadded(IEnumerable<IR.CompilerError> errs)
