@@ -14,7 +14,6 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\UniGal.Compiler.Backend\UniGal.Compiler.Backend.csproj" />
-		<ProjectReference Include="..\Unigal.Compiler.BKEBackend\UniGal.Compiler.BKEBackend.csproj" />
 		<ProjectReference Include="..\UniGal.Compiler.Frontend\UniGal.Compiler.Frontend.csproj" />
 	</ItemGroup>
 

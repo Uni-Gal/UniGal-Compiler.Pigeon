@@ -16,16 +16,18 @@ namespace UniGal.Compiler.Driver
 		/// <param name="backendName">指定的后端名称，可选</param>
 		/// <param name="targetLanguage">目标语言，可选</param>
 		/// <param name="targetEngine">目标引擎，可选</param>
-		public static void Main(IEnumerable<FileInfo> srcs, DirectoryInfo outDir, string? backendName = null, string? targetLanguage = null , string? targetEngine = null)
+		public static void Main(IEnumerable<FileInfo> srcs, DirectoryInfo? outDir = null, string? backendName = null, string? targetLanguage = null , string? targetEngine = null)
 		{
 			CompileOptions options = new()
 			{
 				BackendName = backendName,
 				Sources = srcs,
-				OutDir = outDir,
 				TargetEngine = targetEngine,
 				TargetLanguage = targetLanguage
 			};
+
+			if(outDir != null)
+				options.OutDir = outDir;
 
 			CompileDriver driver = new(options);
 			driver.OnErrorsAdded += driver_onerrorsadded;

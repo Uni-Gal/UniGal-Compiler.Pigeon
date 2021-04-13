@@ -14,9 +14,9 @@ namespace UniGal.Compiler.LibDriver
 		/// </summary>
 		public IEnumerable<FileInfo> Sources { get; set; } = Array.Empty<FileInfo>();
 		/// <summary>
-		/// 源文件
+		/// 输出目录
 		/// </summary>
-		public DirectoryInfo OutDir { get; set; } = new(".\\Compiled\\");
+		public DirectoryInfo OutDir { get; set; } = new(".\\");
 
 		/// <summary>
 		/// 后端名称
