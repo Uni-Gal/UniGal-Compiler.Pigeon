@@ -24,7 +24,7 @@ namespace UniGal.Compiler.Frontend
 		/// <summary>
 		/// 获取问题列表
 		/// </summary>
-		public IEnumerable<CompilerError> Problems => problems;
+		public IEnumerable<CompilerError> Errors => problems;
 		/// <summary>
 		/// 是否存在关键性错误，即解析失败
 		/// </summary>

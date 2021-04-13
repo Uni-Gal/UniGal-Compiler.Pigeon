@@ -10,7 +10,10 @@ namespace UniGal.Compiler.LibDriver
 {
 	sealed partial class CompileDriver
 	{
-		public partial void BeginCompile()
+		/// <summary>
+		/// 开始编译
+		/// </summary>
+		public void BeginCompile()
 		{
 			foreach (FileInfo src in opt.Sources)
 			{
@@ -18,27 +21,47 @@ namespace UniGal.Compiler.LibDriver
 				TextReader r = new StreamReader(srcStream, Encoding.UTF8, false);
 				using Parser p = new(r);
 
-				if(p.Parse())
+				if (p.Parse())
 				{
+					errors.AddRange(p.Errors);
+					OnErrorsAdded?.Invoke(p.Errors);
+
 					ScriptDom dom = p.Dom;
-
-					// TODO：null以后改成从opt中获得
-					BackendRecord backendFactory =
-						select_factory(dom.Metadata.TargetEngine,
-						dom.Metadata.TargetLanguage, opt.BackendVersion);
-					Backend.IBackend backend = backendFactory.Factory.CreateBackend(OutputDirectory, dom.Metadata.TargetLanguage);
-
-					backend.Compile(dom);
-
-					if(backend.HasCriticialError)
+					try
 					{
-						// 输出错误信息，不停止
+						BackendRecord backendFactory;
 
+						if (opt.BackendName == null)
+							backendFactory = select_factory(opt.TargetEngine ?? dom.Metadata.TargetEngine,
+								opt.TargetLanguage, opt.BackendVersion);
+						else
+							backendFactory = backends.Find((b) => b.Name == opt.BackendName) ??
+								select_factory(opt.TargetEngine ?? dom.Metadata.TargetEngine,
+								opt.TargetLanguage, opt.BackendVersion);
+
+						Backend.IBackend backend = backendFactory.Factory.CreateBackend(
+							OutputDirectory, opt.TargetLanguage);
+						backend.Compile(dom);
+
+						if (backend.HasCriticialError)
+						{
+							errors.AddRange(backend.Errors);
+							OnErrorsAdded?.Invoke(backend.Errors);
+							continue;
+						}
+					}
+					catch (BackendNotFoundException e)
+					{
+						errors.Add(new CompilerDriverError(9013, ErrorServiety.CritialError,
+							e.ToString(), new string[] { e.Engine, e.Version }));
+						OnErrorsAdded?.Invoke(errors.GetRange(errors.Count-1, 1));
 					}
 				}
 				else
 				{
-					// 输出错误信息，不停止
+					var errs = p.Errors;
+					errors.AddRange(errs);
+					OnErrorsAdded?.Invoke(errs);
 					continue;
 				}
 			}

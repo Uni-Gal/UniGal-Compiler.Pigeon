@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-
+using UniGal.Compiler.IR;
 using UniGal.Compiler.LibDriver;
 #pragma warning disable CS1591
 namespace UniGal.Compiler.Driver
@@ -28,10 +28,18 @@ namespace UniGal.Compiler.Driver
 			};
 
 			CompileDriver driver = new(options);
-
+			driver.OnErrorsAdded += driver_onerrorsadded;
 			driver.BeginCompile();
 
 		}
 
+		private static void driver_onerrorsadded(IEnumerable<IR.CompilerError> errs)
+		{
+			foreach (CompilerError err in errs)
+			{
+				Console.WriteLine(err.ToString());
+				Console.WriteLine();
+			}
+		}
 	}
 }

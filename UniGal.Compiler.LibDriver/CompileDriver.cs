@@ -18,7 +18,12 @@ namespace UniGal.Compiler.LibDriver
 		private readonly CompileOptions opt;
 		private readonly List<CompilerError> errors;
 		private readonly List<BackendRecord> backends;
-		
+
+		/// <summary>
+		/// 当错误添加时发生
+		/// </summary>
+		public event Action<IEnumerable<CompilerError>> OnErrorsAdded;
+
 		/// <summary>
 		/// 生成输出目录
 		/// </summary>
@@ -46,15 +51,5 @@ namespace UniGal.Compiler.LibDriver
 			errors = new(100);
 			backends = new(8);
 		}
-
-		internal partial BackendRecord select_factory(string engine, string language, string? version);
-		/// <summary>
-		/// 加载后端
-		/// </summary>
-		public partial void LoadBackends();
-		/// <summary>
-		/// 开始编译
-		/// </summary>
-		public partial void BeginCompile();
 	}
 }
