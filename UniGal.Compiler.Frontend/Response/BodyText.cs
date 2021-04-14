@@ -13,10 +13,10 @@ namespace UniGal.Compiler.Frontend
 		// 体量原因，特别放出来
 		internal static class BodyText
 		{
-			internal static ScriptText on_text(XmlReader r, List<CompilerError> errors)
+			internal static Scenario on_scenario(XmlReader r, List<CompilerError> errors)
 			{
 				List<Page> pages = new(20);
-				ScriptText ret = new(pages);
+				Scenario ret = new(pages);
 				while (r.Read() && r.NodeType != XmlNodeType.EndElement && r.Name != "text")
 				{
 					if (r.NodeType == XmlNodeType.Element)

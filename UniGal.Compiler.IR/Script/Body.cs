@@ -10,12 +10,12 @@ namespace UniGal.Compiler.IR.Script
 	/// </summary>
 	public class Body : BasicElement
 	{
-		public IEnumerable<ScriptText> Texts;
+		public IEnumerable<Scenario> Scenes;
 		public Codes Code;
 
-		public Body(IEnumerable<ScriptText> texts, Codes code)
+		public Body(IEnumerable<Scenario> texts, Codes code)
 		{
-			Texts = texts;
+			Scenes = texts;
 			Code = code;
 		}
 	}

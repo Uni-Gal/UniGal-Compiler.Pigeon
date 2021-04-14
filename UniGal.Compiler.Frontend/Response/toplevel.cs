@@ -64,7 +64,7 @@ namespace UniGal.Compiler.Frontend
 							catch (CultureNotFoundException e)
 							{
 								errors.Add(new ParserError(
-									9002, ErrorServiety.Warning, new string[] { e.Message, e.InvalidCultureName! },
+									9002, ErrorServiety.Warning, new string[] { e.Message, e.InvalidCultureName ?? "" },
 									"出现脚本编译器不支持的语言"));
 							}
 							catch (ArgumentException e)
@@ -113,7 +113,7 @@ namespace UniGal.Compiler.Frontend
 
 		internal static Body on_scriptbody(XmlReader r, List<CompilerError> errors)
 		{
-			List<ScriptText> texts = new(40);
+			List<Scenario> scenes = new(40);
 			Codes? code = null;
 			string? comment = null;
 			while (r.Read() && r.NodeType != XmlNodeType.EndElement && r.Name != "body")
@@ -125,8 +125,8 @@ namespace UniGal.Compiler.Frontend
 						case "code":
 							code = BodyCode.on_code(r, errors);
 							break;
-						case "text":
-							texts.Add(BodyText.on_text(r, errors));
+						case "scenario":
+							scenes.Add(BodyText.on_scenario(r, errors));
 							break;
 						case "comment":
 							comment = on_comment(r);
@@ -138,7 +138,7 @@ namespace UniGal.Compiler.Frontend
 			}
 
 			Body ret = new(
-				texts,
+				scenes,
 				code ??
 					new Codes(Array.Empty<Audio>(), Array.Empty<Image>(), Array.Empty<IR.Script.ScriptBody.ActionRecord>())
 				);

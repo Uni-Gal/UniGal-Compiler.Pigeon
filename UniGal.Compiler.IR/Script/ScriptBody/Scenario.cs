@@ -5,7 +5,7 @@ namespace UniGal.Compiler.IR.Script.ScriptBody
 	/// <summary>
 	/// 台本
 	/// </summary>
-	public class ScriptText : BasicElement
+	public class Scenario : BasicElement
 	{
 		/// <summary>
 		/// 显示页面的集合
@@ -16,7 +16,7 @@ namespace UniGal.Compiler.IR.Script.ScriptBody
 		/// 构造函数
 		/// </summary>
 		/// <param name="pages"></param>
-		public ScriptText(IEnumerable<Page> pages)
+		public Scenario(IEnumerable<Page> pages)
 		{
 			Pages = pages;
 		}
