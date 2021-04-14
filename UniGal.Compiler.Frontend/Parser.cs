@@ -77,17 +77,17 @@ namespace UniGal.Compiler.Frontend
 		[MemberNotNullWhen(true, "Dom")]
 		public bool Parse()
 		{
-			using XmlReader r = XmlReader.Create(xml_stream);
-			XmlReaderSettings? rsettings = r.Settings;
-			if (rsettings != null)
+			XmlReaderSettings rsettings = new()
 			{
-				rsettings.Async = false;
-				rsettings.CloseInput = false;
+				Async = false,
+				CloseInput = false,
 
-				rsettings.IgnoreComments = true;
-				rsettings.IgnoreWhitespace = true;
-			}
-			reader_settings = r.Settings ?? new();
+				IgnoreComments = true,
+				IgnoreWhitespace = true
+			};
+
+			using XmlReader r = XmlReader.Create(xml_stream, rsettings);
+
 
 			Metadata? md = null;
 			EnvironmentInfo? rtenv = null;
@@ -140,9 +140,8 @@ namespace UniGal.Compiler.Frontend
 			catch (XmlException e)
 			{
 				var errobj = new ParserError(2, ErrorServiety.CritialError, new string[] {
-					"",
 					e.Message,
-					string.Format("第{0}行, {1}个字符", e.LineNumber.ToString(), e.LinePosition.ToString())
+					string.Format("第{0}行, 第{1}个字符", e.LineNumber.ToString(), e.LinePosition.ToString())
 				}, "XML文档有问题");
 				problems.Add(errobj);
 				return false;

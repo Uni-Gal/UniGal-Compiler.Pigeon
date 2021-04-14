@@ -12,7 +12,7 @@ namespace UniGal.Compiler.Driver
 		/// Uni-Gal编译器命令行入口
 		/// </summary>
 		/// <param name="srcs">源文件列表，用空格分隔每个文件</param>
-		/// <param name="outDir">输出目录</param>
+		/// <param name="outDir">输出目录，可选</param>
 		/// <param name="backendName">指定的后端名称，可选</param>
 		/// <param name="targetLanguage">目标语言，可选</param>
 		/// <param name="targetEngine">目标引擎，可选</param>
