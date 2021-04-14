@@ -17,6 +17,7 @@ namespace UniGal.Compiler.LibDriver
 		{
 			foreach (FileInfo src in opt.Sources)
 			{
+				OnCompileSource?.Invoke(src.Name);
 				FileStream srcStream = src.Open(FileMode.Open, FileAccess.Read, FileShare.Read);
 				TextReader r = new StreamReader(srcStream, Encoding.UTF8, false);
 				using Parser p = new(r);
@@ -65,6 +66,7 @@ namespace UniGal.Compiler.LibDriver
 					continue;
 				}
 			}
+			OnComplete?.Invoke();
 		}
 	}
 }

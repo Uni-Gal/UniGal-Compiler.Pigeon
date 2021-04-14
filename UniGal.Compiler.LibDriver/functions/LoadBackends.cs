@@ -10,8 +10,8 @@ namespace UniGal.Compiler.LibDriver
 	{
 		/// <summary>
 		/// 加载后端
-		/// </summary
-		public void LoadBackends()
+		/// </summary>
+		internal void load_backends()
 		{
 			DirectoryInfo backendDir = new(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Backends"));
 			foreach (FileInfo file in backendDir.EnumerateFiles())
