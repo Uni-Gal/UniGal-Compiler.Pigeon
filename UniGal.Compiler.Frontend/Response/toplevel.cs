@@ -120,7 +120,7 @@ namespace UniGal.Compiler.Frontend
 			{
 				if (r.NodeType == XmlNodeType.Element)
 				{
-					switch (r.Value)
+					switch (r.Name)
 					{
 						case "code":
 							code = BodyCode.on_code(r, errors);

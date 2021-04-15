@@ -19,5 +19,15 @@ namespace UniGal.Compiler.IR.Script.ScriptBody
 		/// 若该段落是复合式的，Content字段将包含起止XML标记在内
 		/// </remarks>
 		public readonly string Content = string.Empty;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="cmplx"></param>
+		/// <param name="content"></param>
+		public Paragraph(bool cmplx, string content)
+		{
+			
+		}
 	}
 }
