@@ -10,6 +10,8 @@ namespace UniGal.Compiler.IR.Script.ScriptBody
 		Bold = 1,
 		Italic = 2,
 		Stroke = 4,
-		Undelined = 8
+		Undelined = 8,
+		Large = 16,
+		Small = 32
 	}
 }

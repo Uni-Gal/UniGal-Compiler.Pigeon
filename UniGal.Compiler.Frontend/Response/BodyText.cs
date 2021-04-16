@@ -13,56 +13,38 @@ namespace UniGal.Compiler.Frontend
 		// 体量原因，特别放出来
 		internal static class BodyText
 		{
-			internal static CharacterInfo on_character(XmlDocument dom, List<CompilerError> errors)
+			internal static CharacterInfo on_complexchar(XmlReader r, List<CompilerError> errors)
 			{
-				CharacterInfo character;
-				if (dom.ChildNodes.Count != 0)
+				do
 				{
-					XmlNode? colorNode =
-						dom.SelectSingleNode("./character/color") ??
-						dom.SelectSingleNode("./character/colour");
-					string colorStr = "#00000000";
-					Color charcolor;
-					if (colorNode != null)
+					switch (r.Name)
 					{
-						string colorRaw = colorNode.InnerText;
 
-						if (colorRaw.StartsWith('#'))
-							if (colorRaw.Length == 7)
-								colorStr = colorRaw + "00";
-							else
-								colorStr = colorRaw;
-						try
-						{
-								charcolor = new Color()
-								{
-									R = byte.Parse(colorStr.AsSpan().Slice(1, 2), NumberStyles.HexNumber),
-									G = byte.Parse(colorStr.AsSpan().Slice(3, 2), NumberStyles.HexNumber),
-									B = byte.Parse(colorStr.AsSpan().Slice(5, 2), NumberStyles.HexNumber),
-									A = byte.Parse(colorStr.AsSpan().Slice(7, 2), NumberStyles.HexNumber),
-								};
-						}
-						catch (FormatException e)
-						{
-							errors.Add(new ParserError(
-								9002, ErrorServiety.Warning,
-								new string[] { colorStr, e.Message },
-								"颜色值格式不正确"));
-							charcolor = new Color() { Packed = 0 };
-						}
 					}
-					else
-					{
-						charcolor = new Color() { Packed = 0 };
-					}
-					character = new(
-						dom.SelectSingleNode("./character/name")?.Value ?? "",
-						charcolor);
 				}
-				else
+				while (r.NodeType != XmlNodeType.EndElement && r.Name != "character" && r.Read());
+			}
+
+			internal static CharacterInfo on_character(XmlReader r, List<CompilerError> errors)
+			{
+				CharacterInfo? character = null;
+
+				r.Read();
+				switch (r.NodeType)
 				{
-					character = new(dom.InnerText, new());
+					case XmlNodeType.Element:
+						// complex
+						character = on_complexchar(r, errors);
+						break;
+					case XmlNodeType.Text:
+						character = new(r.ReadContentAsString());
+						while (r.Read() && r.NodeType != XmlNodeType.EndElement && r.Name != "character") ;
+						break;
+					default:
+						character = new("无名氏");
+						break;
 				}
+
 				return character;
 			}
 
@@ -97,7 +79,7 @@ namespace UniGal.Compiler.Frontend
 												switch (r.Name)
 												{
 													case "character":
-														character = on_character(dom, errors);
+														character = on_character(r, errors);
 														break;
 													case "para":
 														if (!pagesChild.HasChildNodes)
