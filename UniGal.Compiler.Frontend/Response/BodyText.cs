@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Text;
 using System.Xml;
 using UniGal.Compiler.IR;
 using UniGal.Compiler.IR.Script.ScriptBody;
@@ -13,16 +14,54 @@ namespace UniGal.Compiler.Frontend
 		// 体量原因，特别放出来
 		internal static class BodyText
 		{
+			internal static TextStyle on_textstyle(XmlReader r, List<CompilerError> errors)
+			{
+				TextStyle ret = TextStyle.None;
+
+				while (r.Read() && r.NodeType != XmlNodeType.EndElement && r.Name != "style")
+				{
+					
+				}
+
+				return ret;
+			}
+
 			internal static CharacterInfo on_complexchar(XmlReader r, List<CompilerError> errors)
 			{
-				do
+				string? name = null;
+				string? ruby = null;
+				TextStyle style = TextStyle.None;
+				Color color = new();
+
+				switch (r.Name)
+				{
+					case "name":
+						name = r.Value;
+						break;
+					case "ruby":
+						ruby = r.Value;
+						break;
+					case "style":
+						style = on_textstyle(r, errors);
+						break;
+					case "color":
+					// 有意为之
+					case "colour":
+						ruby = r.Value;
+						break;
+					default:
+						break;
+				}
+				
+				while (r.Read() && r.NodeType != XmlNodeType.EndElement && r.Name != "character")
 				{
 					switch (r.Name)
 					{
-
+						
 					}
 				}
-				while (r.NodeType != XmlNodeType.EndElement && r.Name != "character" && r.Read());
+
+				return new CharacterInfo(name, ruby, color, style);
 			}
 
 			internal static CharacterInfo on_character(XmlReader r, List<CompilerError> errors)

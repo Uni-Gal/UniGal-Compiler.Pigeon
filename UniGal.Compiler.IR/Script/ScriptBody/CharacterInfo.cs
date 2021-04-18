@@ -34,10 +34,10 @@ namespace UniGal.Compiler.IR.Script.ScriptBody
 		/// </summary>
 		public string? Ruby;
 		
-		/// <summary>
-		/// 原始xml
-		/// </summary>
-		public string? RawXml;
+		///// <summary>
+		///// 原始xml
+		///// </summary>
+		//public string? RawXml;
 
 		/// <summary>
 		/// 构造函数
@@ -51,14 +51,13 @@ namespace UniGal.Compiler.IR.Script.ScriptBody
 		/// <summary>
 		/// 
 		/// </summary>
-		public CharacterInfo(string name, string? ruby, Color color, TextStyle style, string raw)
+		public CharacterInfo(string name, string? ruby, Color color, TextStyle style)
 		{
 			IsComplex = true;
 			Name = name;
 			Ruby = ruby;
 			NameColor = color;
 			Style = style;
-			RawXml = raw;
 		}
 	}
 
