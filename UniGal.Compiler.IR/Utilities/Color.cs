@@ -10,22 +10,34 @@ namespace UniGal.Compiler.IR.Utilities
 	{
 		/// <summary>红色分量</summary>
 		[FieldOffset(0)]
-		public byte R;
+		public byte Red;
 		/// <summary>绿色分量</summary>
 		[FieldOffset(1)]
-		public byte G;
+		public byte Green;
 		/// <summary>蓝色分量</summary>
 		[FieldOffset(2)]
-		public byte B;
+		public byte Blue;
 		/// <summary>透明分量，透明度Transparentcy</summary>
 		[FieldOffset(3)]
-		public byte A;
+		public byte Alpha;
 
 		/// <summary>
-		/// <para>打包的颜色值</para>
-		/// <para>建议判断一下当前平台的字节序</para>
+		/// 
 		/// </summary>
-		[FieldOffset(0)]
-		public uint Packed;
+		public Color(byte r, byte g ,byte b, byte a)
+		{
+			Red = r;
+			Green = g;
+			Blue = b;
+			Alpha = a;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public Color(byte r, byte g, byte b) : this(r, g, b, 0)
+		{
+			
+		}
 	}
 }
