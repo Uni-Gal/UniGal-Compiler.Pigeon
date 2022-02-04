@@ -21,7 +21,7 @@ UniGal.Compiler.FakeBackend：测试用的假后端
 
 ## 那你做完了吗
 没有，因为Fa鸽≈鸽
-但是应该快了
+但是应该没了
 
 ## 那UniGal-Compiler又是怎么回事
 那个是早先做出来，能用  
