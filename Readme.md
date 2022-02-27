@@ -1,5 +1,8 @@
-﻿# UniGal.Compilers
-如你所见，这是UniGal-Script的编译器
+# UniGal-Compiler.Pigeon
+
+如你所见，这是一个UniGal-Script的编译器，主要由@Akarinnnnn （Fa鸽）维护。
+
+但它将不再适用于大于0.1.2版本的UniGal-Script
 
 ## 代码结构
 UniGal.Compiler.Backend：后端的基础结构  
@@ -23,7 +26,8 @@ UniGal.Compiler.FakeBackend：测试用的假后端
 没有，因为Fa鸽≈鸽
 但是应该没了
 
-## 那UniGal-Compiler又是怎么回事
+## 那UniGal-Compiler.Cheese又是怎么回事
+
 那个是早先做出来，能用  
-(能用，但不建议用，因为那个只支持纯文本```<text></text>```，并且支持到UniGal-Script V0.0.2（现在已经是V0.1.0了）)
-我这还没做完呢
+
+能用，但不建议用，因为那个只支持纯文本```<text></text>```，并且仅支持到UniGal-Script V0.0.2
