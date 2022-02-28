@@ -2,7 +2,7 @@
 
 如你所见，这是一个UniGal-Script的编译器，主要由@Akarinnnnn （Fa鸽）维护。
 
-但它将不再适用于大于0.1.2版本的UniGal-Script
+但它将不再适用于大于[0.1.2](https://github.com/Uni-Gal/UniGal-Script/releases/tag/0.1.2)版本的UniGal-Script
 
 ## 代码结构
 UniGal.Compiler.Backend：后端的基础结构  
